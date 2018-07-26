@@ -1,10 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-sm bg-light navbar-light" slot="navbar">
+  <nav class="navbar bg-light navbar-light">
     <a class="navbar-brand" @click="navigateTo('/')">ZeFaF</a>
-    <ul class="navbar-nav">
-      <li class="nav-item nav-link" @click="navigateTo('/')">Home</li>
-      <li class="nav-item nav-link" @click="navigateTo('/register')">Register</li>
-      <li class="nav-item nav-link" @click="navigateTo('/login')">Login</li>
+    <ul class="navbar-nav d-inline">
+      <li class="nav-item nav-link d-inline mr-3" @click="navigateTo('/')">Home</li>
+      <li class="nav-item nav-link d-inline mr-3" @click="navigateTo('/register')">Register</li>
+      <li class="nav-item nav-link d-inline mr-3" @click="navigateTo('/login')">Login</li>
     </ul>
   </nav>
 </template>
@@ -22,7 +22,3 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
