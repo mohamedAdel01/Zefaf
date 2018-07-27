@@ -6,19 +6,22 @@ import Register from '@/components/main-Components/Register'
 import Login from '@/components/main-Components/Login'
 // APPLICATION COMPONENTS
 import Application from '@/components/app-Components/Application'
-import Accessories from '@/components/app-Components/Accessories'
-import Furniture from '@/components/app-Components/Furniture'
-import HairStyle from '@/components/app-Components/Hair-Style'
-import Honeymoon from '@/components/app-Components/Honeymoon'
-import Hotels from '@/components/app-Components/Hotels'
-import Photographers from '@/components/app-Components/Photographers'
-import WeddingCakes from '@/components/app-Components/Wedding-Cakes'
-import WeddingCars from '@/components/app-Components/Wedding-Cars'
-import WeddingClothes from '@/components/app-Components/Wedding-Clothes'
-import WeddingFlowers from '@/components/app-Components/Wedding-Flowers'
-import WeddingHalls from '@/components/app-Components/Wedding-Halls'
-import WeddingInvitations from '@/components/app-Components/Wedding-Invitations'
-import WeddingMusic from '@/components/app-Components/Wedding-Music'
+import Accessories from '@/components/main-Components/Wedding-Componenets/Accessories'
+import Furniture from '@/components/main-Components/Wedding-Componenets/Furniture'
+import HairStyle from '@/components/main-Components/Wedding-Componenets/Hair-Style'
+import Honeymoon from '@/components/main-Components/Wedding-Componenets/Honeymoon'
+import Hotels from '@/components/main-Components/Wedding-Componenets/Hotels'
+import Photographers from '@/components/main-Components/Wedding-Componenets/Photographers'
+import WeddingCakes from '@/components/main-Components/Wedding-Componenets/Wedding-Cakes'
+import WeddingCars from '@/components/main-Components/Wedding-Componenets/Wedding-Cars'
+import WeddingClothes from '@/components/main-Components/Wedding-Componenets/Wedding-Clothes'
+import WeddingFlowers from '@/components/main-Components/Wedding-Componenets/Wedding-Flowers'
+import WeddingHalls from '@/components/main-Components/Wedding-Componenets/Wedding-Halls'
+import WeddingInvitations from '@/components/main-Components/Wedding-Componenets/Wedding-Invitations'
+import WeddingMusic from '@/components/main-Components/Wedding-Componenets/Wedding-Music'
+// DETAILS COMPONENTS
+import Details from '@/components/main-Components/details-Components/Details'
+
 
 Vue.use(Router)
 
@@ -45,69 +48,74 @@ export default new Router({
       component: Application
     },
     {
-      path: '/app/accessories',
+      path: '/accessories',
       name: 'Accessories',
       component: Accessories
     },
     {
-      path: '/app/furniture',
+      path: '/furniture',
       name: 'Furniture',
       component: Furniture
     },
     {
-      path: '/app/hairStyle',
+      path: '/hairStyle',
       name: 'HairStyle',
       component: HairStyle
     },
     {
-      path: '/app/honeymoon',
+      path: '/honeymoon',
       name: 'Honeymoon',
       component: Honeymoon
     },
     {
-      path: '/app/hotels',
+      path: '/hotels',
       name: 'Hotels',
       component: Hotels
     },
     {
-      path: '/app/photographers',
+      path: '/photographers',
       name: 'Photographers',
       component: Photographers
     },
     {
-      path: '/app/weddingcakes',
+      path: '/weddingcakes',
       name: 'WeddingCakes',
       component: WeddingCakes
     },
     {
-      path: '/app/weddingcars',
+      path: '/weddingcars',
       name: 'WeddingCars',
       component: WeddingCars
     },
     {
-      path: '/app/weddingclothes',
+      path: '/weddingclothes',
       name: 'WeddingClothes',
       component: WeddingClothes
     },
     {
-      path: '/app/weddingflowers',
+      path: '/weddingflowers',
       name: 'WeddingFlowers',
       component: WeddingFlowers
     },
     {
-      path: '/app/weddinghalls',
+      path: '/weddinghalls',
       name: 'WeddingHalls',
       component: WeddingHalls
     },
     {
-      path: '/app/weddinginvitations',
+      path: '/weddinginvitations',
       name: 'WeddingInvitations',
       component: WeddingInvitations
     },
     {
-      path: '/app/weddingmusic',
+      path: '/weddingmusic',
       name: 'WeddingMusic',
       component: WeddingMusic
+    },
+    {
+      path: '/details',
+      name: 'Details',
+      component: Details
     }
   ]
 })
