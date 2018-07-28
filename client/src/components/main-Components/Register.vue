@@ -4,10 +4,6 @@
     <div class="jumbotron form-group">
       <h1 class="mx-auto mt-5" style="width: 450px">Register page content</h1>
       <form class="mx-auto mt-5" style="width: 450px" @submit.prevent="register">
-        <label>First name</label>
-        <input class="form-control" type="text" placeholder="First name" v-model="req.firstname"/>
-        <label>Last name</label>
-        <input class="form-control" type="text" placeholder="Last name" v-model="req.lastname"/>
         <label>Email</label>
         <input class="form-control" type="email" placeholder="Email" v-model="req.email"/>
         <label>password</label>
@@ -30,9 +26,7 @@ export default {
   },
   data () {
     return {
-      req:{
-        firstname: null,
-        lastname: null,
+      req: {
         email: null,
         password: null
       },
@@ -49,13 +43,14 @@ export default {
       }
 
       try {
-      //  const res = await authServices.register(this.req)
-       console.log(this.req)
+       const res = await authServices.register(this.req)
+       console.log(res.data)
 
       } catch(error) {
         console.log(error)
-      }
+        console.log(error.response.data)
 
+      }
     }
   }
 }

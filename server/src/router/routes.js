@@ -1,7 +1,5 @@
-const User = require('../../models/user')
+const authPolices = require('../../policies/authPolicies')
 
 module.exports = (app) => {
-    app.post('/register', (req,res) => {
-        const user = User.create(req.body)  
-    })
+    app.post('/register', authPolices.register)
 }
