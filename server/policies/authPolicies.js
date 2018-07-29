@@ -25,8 +25,7 @@ module.exports = {
                 res.status(400).send('default')
             }
         } else {
-            res.send('done')
-            // next()
+            next()
         }
     }
 }
