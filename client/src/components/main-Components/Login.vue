@@ -43,11 +43,12 @@ export default {
       }
 
       try {
-      //  const res = await authServices.login(this.req)
-      console.log(this.req)
+      const res = await authServices.login(this.req)
+      console.log(res.data)
 
       } catch(error) {
         console.log(error)
+        console.log(error.response.data)
       }
 
     }
