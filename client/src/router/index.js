@@ -6,6 +6,8 @@ import Register from '@/components/main-Components/Register'
 import Login from '@/components/main-Components/Login'
 // APPLICATION COMPONENTS
 import Application from '@/components/app-Components/Application'
+import form from '@/components/app-Components/Add-Items' // this is for test uploading imgs
+// WEDDING COMPONENTS
 import Accessories from '@/components/main-Components/Wedding-Componenets/Accessories'
 import Furniture from '@/components/main-Components/Wedding-Componenets/Furniture'
 import HairStyle from '@/components/main-Components/Wedding-Componenets/Hair-Style'
@@ -116,6 +118,11 @@ export default new Router({
       path: '/details',
       name: 'Details',
       component: Details
+    },
+    { // this is for test only
+      path: '/form',
+      name: 'form',
+      component: form
     }
   ]
 })
