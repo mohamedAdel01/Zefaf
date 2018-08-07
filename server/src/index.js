@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const bodyparser = require('body-parser')
 const cors = require('cors')
 const CONFIG = require('./config')
+const routes = require('./router/routes')
 
 // get MONGODATA here to run
 require('./config/mongoDB')
@@ -20,7 +21,7 @@ app.use(cors())
 app.use(express.static('../public'))
 
 // routers
-require('./router/routes')(app)
+app.use('/api', routes)
 
 // listen to port
 app.listen(CONFIG.PORT, () => {

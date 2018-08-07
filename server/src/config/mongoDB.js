@@ -5,7 +5,7 @@ const path = require('path')
 const CONFIG = require('./index')
 
 // connenting to database
-mongoose.connect(CONFIG.MONGO_DB.URI + CONFIG.MONGO_DB.db)
+mongoose.connect(CONFIG.MONGO_DB.URI + CONFIG.MONGO_DB.DB)
 mongoose.Promise = global.Promise
 mongoose.connection.once('open', function(err) {
   if (err) {
