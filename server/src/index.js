@@ -1,20 +1,13 @@
 // requirements
 const express = require('express')
-const mongoose = require('mongoose')
 const morgan = require('morgan')
 const bodyparser = require('body-parser')
 const cors = require('cors')
+const CONFIG = require('./config')
+const routes = require('./router/routes')
 
-// connenting to database
-mongoose.connect('mongodb://localhost/zefaf')
-mongoose.Promise = global.Promise
-mongoose.connection.once('open', function(err) {
-    if (err) {
-      console.log('error found', err)
-    } else {
-      console.log('we are connected to database.')
-    }
-  })
+// get MONGODATA here to run
+require('./config/mongoDB')
 
 // connecting to server
 const app = express()
@@ -24,10 +17,13 @@ app.use(morgan('dev'))
 app.use(bodyparser.json())
 app.use(cors())
 
+// Public Folder
+app.use(express.static('../public'))
+
 // routers
-require('./router/routes')(app)
+app.use('/api', routes)
 
 // listen to port
-app.listen(process.env.PORT || 5000, () => {
+app.listen(CONFIG.PORT, () => {
   console.log('we are connecting to port 5000')
 })
