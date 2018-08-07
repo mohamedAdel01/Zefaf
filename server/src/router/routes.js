@@ -1,7 +1,7 @@
 const authPolices = require('../../policies/authPolicies')
 const authcontrolles = require('../../controlles/authcontrolles')
 const dataControlls = require('../../controlles/dataControlls')
-const upload = require('../index').upload
+const upload = require('../config/mongoDB').upload
 
 module.exports = (app) => {
   app.post('/register', authPolices.register, authcontrolles.register)
