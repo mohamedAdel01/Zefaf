@@ -1,12 +1,10 @@
-// this to controll with data from FRONT-END
-
 var bcrypt = require('bcrypt')
 var jwt = require('jsonwebtoken')
 const saltRounds = 10
-const User = require('../models/user')
+const MNGUser = require('../models/MNGUser')
 
 module.exports = {
-    async register(req, res) {
+    async MNGAddUser(req, res) {
         bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
 
             if(err) {
@@ -16,8 +14,8 @@ module.exports = {
 
             req.body.password = hash
 
-            User.create(req.body).then((user) => {
-                jwt.sign({user}, "mohamedsecret", {expiresIn: "7d"}, (err, token) => {
+            MNGUser.create(req.body).then((user) => {
+                jwt.sign({user}, "mohamedsecret", {expiresIn: "1d"}, (err, token) => {
 
                     if(err) {
                         // error in server we should tell him to try in later time 
@@ -34,13 +32,13 @@ module.exports = {
         })
     },
 
-    async login(req, res) {
-        var user = await User.findOne({email: req.body.email})
+    async MNGLogin(req, res) {
+        var user = await MNGUser.findOne({email: req.body.email})
 
         // EMAIL CHECK
         if(!user) {
             return res.status(403).send({
-                msg: "the email is incorrect"
+                msg: "the email is not found"
             })
         }
 
@@ -54,7 +52,7 @@ module.exports = {
         }
 
         // SEND TOKEN
-        jwt.sign({user}, "mohamedsecret", {expiresIn: "7d"}, (err, token) => {
+        jwt.sign({user}, "mohamedsecret", {expiresIn: "1d"}, (err, token) => {
 
             if(err) {
                 // error in server we should tell him to try in later time 

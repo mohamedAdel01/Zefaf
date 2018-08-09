@@ -1,11 +1,16 @@
 const express = require('express')
+const router = express.Router()
+const upload = require('../config/mongoDB').upload
 const authPolices = require('../../policies/authPolicies')
 const authcontrolles = require('../../controlles/authcontrolles')
 const dataControlls = require('../../controlles/dataControlls')
-const upload = require('../config/mongoDB').upload
-const router = express.Router()
+const MNGControlles = require('../../controlles/MNGControlles')
 
-// -------------------------ROUTING-----------------------------------
+// ---------------------------ROUTING-----------------------------------
+
+// MNG ROUTING
+  router.post('/MNG/adduser', authPolices.register, MNGControlles.MNGAddUser)
+  router.post('/MNG/login', MNGControlles.MNGLogin)
 
 // AUTHENTICATION ROUTING
   router.post('/register', authPolices.register, authcontrolles.register)

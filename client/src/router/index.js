@@ -6,6 +6,7 @@ import Register from '@/components/main-Components/Register'
 import Login from '@/components/main-Components/Login'
 // APPLICATION COMPONENTS
 import Application from '@/components/app-Components/Application'
+// WEDDING COMPONENTS
 import Accessories from '@/components/main-Components/Wedding-Componenets/Accessories'
 import Furniture from '@/components/main-Components/Wedding-Componenets/Furniture'
 import HairStyle from '@/components/main-Components/Wedding-Componenets/Hair-Style'
@@ -21,6 +22,9 @@ import WeddingInvitations from '@/components/main-Components/Wedding-Componenets
 import WeddingMusic from '@/components/main-Components/Wedding-Componenets/Wedding-Music'
 // DETAILS COMPONENTS
 import Details from '@/components/main-Components/details-Components/Details'
+// MNG COMPONENTS
+import MNGlogin from '@/components/MNG-Components/MNGlogin'
+
 
 
 Vue.use(Router)
@@ -41,11 +45,6 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
-    },
-    {
-      path: '/app',
-      name: 'Application',
-      component: Application
     },
     {
       path: '/accessories',
@@ -116,6 +115,17 @@ export default new Router({
       path: '/details',
       name: 'Details',
       component: Details
+    },
+    {
+      path: '/MNG/app',
+      name: 'Application',
+      component: Application
+    },
+    {
+      path: '/MNG/login',
+      name: 'MNGlogin',
+      component: MNGlogin
     }
+
   ]
 })
