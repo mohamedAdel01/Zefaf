@@ -34,16 +34,30 @@ export default {
         return
       }
 
+      // CHECK LOGIN BEFORE
+      let isUserLoggedIn = this.$store.state.MNG.isUserLoggedIn
+      if(isUserLoggedIn === true) {
+          alert('you are logged in before')
+          return
+        }
+
       try {
-        const res = await MNGServices.MNGlogin(this.req)
-        console.log(res.data)
+          const res = await MNGServices.MNGlogin(this.req)
+          this.$store.dispatch('MNGLogIn', res.data)
+          this.$router.push('/app') // this will route to the page to add new data
 
       } catch(error) {
-        console.log(error)
-        console.log(error.response.data)
+          console.log(error)
+          console.log(error.response.data)
       }
 
     }
+  },
+  mounted() {
+    let isUserLoggedIn = this.$store.state.MNG.isUserLoggedIn
+      if(isUserLoggedIn === true) {
+          this.$router.push('/app') // this will route to the page to add new data
+        }
   }
 }
 </script>

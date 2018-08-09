@@ -117,12 +117,12 @@ export default new Router({
       component: Details
     },
     {
-      path: '/MNG/app',
+      path: '/app',
       name: 'Application',
       component: Application
     },
     {
-      path: '/MNG/login',
+      path: '/mng/login',
       name: 'MNGlogin',
       component: MNGlogin
     }
