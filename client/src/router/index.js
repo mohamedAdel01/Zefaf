@@ -24,6 +24,7 @@ import WeddingMusic from '@/components/main-Components/Wedding-Componenets/Weddi
 import Details from '@/components/main-Components/details-Components/Details'
 // MNG COMPONENTS
 import MNGlogin from '@/components/MNG-Components/MNGlogin'
+import Management from '@/components/MNG-Components/Management'
 
 
 
@@ -125,6 +126,11 @@ export default new Router({
       path: '/mng/login',
       name: 'MNGlogin',
       component: MNGlogin
+    },
+    {
+      path: '/mng/management',
+      name: 'Management',
+      component: Management
     }
 
   ]

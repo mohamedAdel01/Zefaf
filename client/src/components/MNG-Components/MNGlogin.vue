@@ -44,7 +44,7 @@ export default {
       try {
           const res = await MNGServices.MNGlogin(this.req)
           this.$store.dispatch('MNGLogIn', res.data)
-          this.$router.push('/app') // this will route to the page to add new data
+          this.$router.push('/mng/management') // this will route to the page to add new data
 
       } catch(error) {
           console.log(error)
@@ -53,10 +53,11 @@ export default {
 
     }
   },
-  mounted() {
+  created() {
     let isUserLoggedIn = this.$store.state.MNG.isUserLoggedIn
       if(isUserLoggedIn === true) {
-          this.$router.push('/app') // this will route to the page to add new data
+          this.$store.dispatch('MNGLogout')
+          this.$router.push('/') // this will route to the page to add new data
         }
   }
 }
