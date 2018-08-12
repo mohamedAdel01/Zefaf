@@ -25,6 +25,7 @@ import Details from '@/components/main-Components/details-Components/Details'
 // MNG COMPONENTS
 import MNGlogin from '@/components/MNG-Components/MNGlogin'
 import Management from '@/components/MNG-Components/Management'
+import WeddingHallsList from '@/components/MNG-Components/MNG-Lists/WeddingHalls-List'
 
 
 
@@ -130,8 +131,16 @@ export default new Router({
     {
       path: '/mng/management',
       name: 'Management',
-      component: Management
-    }
+      component: Management,
+      children: [
+        {
+          path: '/mng/management/weddinghalls',
+          name: 'WeddingHallsList',
+          component: WeddingHallsList
+        }
+      ]
+    },
+
 
   ]
 })

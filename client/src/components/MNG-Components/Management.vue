@@ -2,13 +2,13 @@
   <div>
     <app-navbar></app-navbar>
     <div class="jumbotron">
-      <h1>add package</h1>
       <form>
         <select>
-          <option value=""></option>
+          <option value="">Wedding Halls</option>
         </select>
       </form>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
   created() {
     let isUserLoggedIn = this.$store.state.MNG.isUserLoggedIn
     if(isUserLoggedIn === false) {
-        this.$router.push('/mng/login') // this will route to the page to add new data
+        return this.$router.push('/mng/login') // this will route to the page to add new data
       }
   }
 }
