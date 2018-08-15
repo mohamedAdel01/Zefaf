@@ -26,6 +26,7 @@ import Details from '@/components/main-Components/details-Components/Details'
 import MNGlogin from '@/components/MNG-Components/MNGlogin'
 import Management from '@/components/MNG-Components/Management'
 import WeddingHallsList from '@/components/MNG-Components/MNG-Lists/WeddingHalls-List'
+import HairStyleList from '@/components/MNG-Components/MNG-Lists/HairStyle-List'
 
 
 
@@ -137,6 +138,11 @@ export default new Router({
           path: '/mng/management/weddinghalls',
           name: 'WeddingHallsList',
           component: WeddingHallsList
+        },
+        {
+          path: '/mng/management/hairstyle',
+          name: 'HairStyleList',
+          component: HairStyleList
         }
       ]
     },

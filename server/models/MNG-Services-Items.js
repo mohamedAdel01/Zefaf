@@ -1,15 +1,11 @@
 const mongoose = require('mongoose')
 const schema = mongoose.Schema
 
-const itemSchema = new schema({
+const ServicesItemsSchema = new schema({
     route: String,
     name: String
 })
 
-const ServicesItemsSchema = new schema({
-    itmes: [itemSchema]
-})
-
-const ServicesItems = mongoose.model('servicesItem', ServicesItemsSchema)
+const ServicesItems = mongoose.model('servicesitems', ServicesItemsSchema)
 
 module.exports = ServicesItems
