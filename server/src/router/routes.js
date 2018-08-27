@@ -1,13 +1,14 @@
 const express = require('express')
 const router = express.Router()
-const upload = require('../config/mongoDB').upload
 const authPolices = require('../../policies/authPolicies')
 const authcontrolles = require('../../controlles/authcontrolles')
 const dataControlls = require('../../controlles/dataControlls')
 const MNGAuthControlles = require('../../controlles/MNG-Auth-Controlles')
 const MNGDataControlles = require('../../controlles/MNG-Data-Controlles')
+const IMGControlles = require('../../controlles/IMG-Controlles')
 
-// ---------------------------ROUTING-----------------------------------
+
+// ---------------------------{ ROUTING }-----------------------------------
 
 // MNG ROUTING
   router.post('/MNG/adduser', authPolices.register, MNGAuthControlles.MNGAddUser)
@@ -22,16 +23,7 @@ const MNGDataControlles = require('../../controlles/MNG-Data-Controlles')
 // WEDDING COMPONENTS ROUTING
   router.get('/details/:sort', dataControlls.show)
 
-// test ==========================================================
-  router.post('/saveImage', (req, res) => {
-    upload(req, res, (err) => {
-      if (err) {
-        console.log(err)
-        return
-      }
-      res.send(req.file)
-    })
-  })
-// ===================================================================
+// ROUTING FOR IMAGES 
+  router.post('/saveImages/:folder/:sub', IMGControlles.SaveImgs)
 
 module.exports = router

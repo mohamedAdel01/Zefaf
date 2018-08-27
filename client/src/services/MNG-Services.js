@@ -7,5 +7,9 @@ export default {
 
   getServicesItems() {
     return Api().get('MNG/getservicesitems')
+  },
+
+  saveImages(req, folder, sub) {
+    return Api().post(`/saveImages/${folder}/${sub}`, req)
   }
 }
