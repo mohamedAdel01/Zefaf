@@ -1,7 +1,7 @@
 <template>
   <div style="height:3000px">
-    <h1 class="mx-auto mt-2" style="width: 600px">wedding halls list page content</h1>
-    <form style="width: 500px; margin: 10px auto" @submit.prevent="sendReq"><hr/>
+    <h1 class="mx-auto mt-2" style="width: 600px">wedding halls list page content</h1><hr/>
+    <form @submit.prevent="sendReq">
 
 <!-- ===================== { MAIN-INFO } ======================== -->
       <section class="main-info">
@@ -11,6 +11,7 @@
         <input class="form-control" type="text" placeholder="city" v-model="req.info.city"/>
         <input class="form-control" type="text" placeholder="address" v-model="req.info.address"/>
         <input class="form-control" type="number" placeholder="max range of people" v-model="req.info.NOPeople"/>
+        <input class="form-control" type="number" placeholder="price of one hour" v-model="req.info.hourPrice"/>
         <input class="form-control" type="number" placeholder="price for rent the wedding hall empty" v-model="req.info.priceRent"/>
         <textarea class="form-control" placeholder="type some information" v-model="req.info.detail"></textarea>
 
@@ -21,13 +22,28 @@
           <div class="showimg">
             <img :src="img" v-for="(img , index) in showImgs.mainIMGS" :key="index"/>
           </div>
-        </div>
-        <div id="map"></div><hr/>
+        </div><hr/>
       </section>
 
 <!-- ===================== { SERVICE-INFO } ======================== -->
       <section class="sub-services">
         <h4>services-prices</h4>
+
+<!-- ===== { songer } ===== -->
+
+        <div class="service-prices">
+          <p class="mr-5">songer:</p>
+          <input type="checkbox" id="songer" v-model="visibility.songer">
+          <label for="checkbox">available: {{ visibility.songer }}</label><br/>
+
+          <div v-if="visibility.songer" class="service-options" id="songer">
+            <span>image: </span><input type="file" @change="showServiceIMG($event, 'songer')"/><br/>
+            <span>type: </span><input type="text"/><br/>
+            <span>price: </span><input type="number"/> pounds<br/>
+            <button @click.prevent="add('songer')">add</button>
+            <button @click.prevent="undo('songer')">undo</button>
+          </div>
+        </div><hr/>
 
 <!-- ===== { Dj } ===== -->
 
@@ -37,8 +53,6 @@
           <label for="checkbox">available: {{ visibility.Dj }}</label><br/>
 
           <div v-if="visibility.Dj" class="service-options" id="Dj">
-            <div>{{req.services.Dj}}</div>
-            <img :src="img" v-for="(img, index) in showImgs.Dj" :key="index"/>
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'Dj')"/><br/>
             <span>type: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
@@ -55,8 +69,6 @@
           <label for="checkbox">available: {{ visibility.flint }}</label><br/>
 
           <div v-if="visibility.flint" class="service-options" id="flint">
-            <div>{{req.services.flint}}</div>
-            <img :src="img" v-for="(img, index) in showImgs.flint" :key="index"/>
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'flint')"/><br/>
             <span>type: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
@@ -73,8 +85,6 @@
           <label for="checkbox">available: {{ visibility.videoTeam }}</label><br/>
 
           <div v-if="visibility.videoTeam" class="service-options" id="videoTeam">
-            <div>{{req.services.videoTeam}}</div>
-            <img :src="img" v-for="(img, index) in showImgs.videoTeam" :key="index"/>
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'videoTeam')"/><br/>
             <span>type: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
@@ -91,8 +101,6 @@
           <label for="checkbox">available: {{ visibility.chairs }}</label><br/>
 
           <div v-if="visibility.chairs" class="service-options" id="chairs">
-            <div>{{req.services.chairs}}</div>
-            <img :src="img" v-for="(img, index) in showImgs.chairs" :key="index"/>
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'chairs')"/><br/>
             <span>type: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
@@ -109,8 +117,6 @@
           <label for="checkbox">available: {{ visibility.tables }}</label><br/>
 
           <div v-if="visibility.tables" class="service-options" id="tables">
-            <div>{{req.services.tables}}</div>
-            <img :src="img" v-for="(img, index) in showImgs.tables" :key="index"/>
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'tables')"/><br/>
             <span>type: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
@@ -127,8 +133,6 @@
           <label for="checkbox">available: {{ visibility.shows }}</label><br/>
 
           <div v-if="visibility.shows" class="service-options" id="shows">
-            <div>{{req.services.shows}}</div>
-            <img :src="img" v-for="(img, index) in showImgs.shows" :key="index"/>
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'shows')"/><br/>
             <span>type: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
@@ -145,8 +149,6 @@
           <label for="checkbox">available: {{ visibility.drinks }}</label><br/>
 
           <div v-if="visibility.drinks" class="service-options" id="drinks">
-            <div>{{req.services.drinks}}</div>
-            <img :src="img" v-for="(img, index) in showImgs.drinks" :key="index"/>
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'drinks')"/><br/>
             <span>type: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
@@ -163,8 +165,6 @@
           <label for="checkbox">available: {{ visibility.buffet }}</label><br/>
 
           <div v-if="visibility.buffet" class="service-options" id="buffet">
-            <div>{{req.services.buffet}}</div>
-            <img :src="img" v-for="(img, index) in showImgs.buffet" :key="index"/>
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'buffet')"/><br/>
             <span>type: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
@@ -181,8 +181,6 @@
           <label for="checkbox">available: {{ visibility.setMenu }}</label><br/>
 
           <div v-if="visibility.setMenu" class="service-options" id="setMenu">
-            <div>{{req.services.setMenu}}</div>
-            <img :src="img" v-for="(img, index) in showImgs.setMenu" :key="index"/>
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'setMenu')"/><br/>
             <span>type: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
@@ -193,9 +191,6 @@
 
 <!-- ===================== { CALENDER } ======================== -->
         <h4>select all days that allready booked</h4>
-        <div>
-          <span class="ml-2" v-for="(date, index) in req.services.dates" :key="index">{{ date }}</span>
-        </div>
 
         <select>
           <option :value="days" v-for="(days, index) in calendar.days" :key="index">{{ days }}</option>
@@ -206,27 +201,84 @@
         <select>
           <option :value="years" v-for="(years, index) in calendar.years" :key="index">{{ years }}</option>
         </select>
+        <button class="mt-3 btn btn-warning" @click.prevent="addDate">add date</button>
+        <button class="mt-3 btn btn-danger" @click.prevent="undoDate">undo date</button>
       </section>
-      <button class="mt-3 btn btn-warning" @click="addDate">add date</button>
-      <button class="mt-3 btn btn-danger" @click="undoDate">undo date</button>
       <input type="submit" class="btn btn-success btn-block"/>
     </form>
+
+    <div id="showData">
+      <h4>the existed services</h4><hr/>
+      <div class="collection">
+        <h5>songer</h5>
+        <div class="">{{req.services.songer}}</div>
+        <img :src="img" v-for="(img, index) in showImgs.songer" :key="index"/>
+      </div>
+      <div class="collection">
+        <h5>Dj</h5>
+        <div class="">{{req.services.Dj}}</div>
+        <img :src="img" v-for="(img, index) in showImgs.Dj" :key="index"/>
+      </div>
+      <div class="collection">
+        <h5>flint</h5>
+        <div class="">{{req.services.flint}}</div>
+        <img :src="img" v-for="(img, index) in showImgs.flint" :key="index"/>
+      </div>
+      <div class="collection">
+        <h5>videoTeam</h5>
+        <div class="">{{req.services.videoTeam}}</div>
+        <img :src="img" v-for="(img, index) in showImgs.videoTeam" :key="index"/>
+      </div>
+      <div class="collection">
+        <h5>chairs</h5>
+        <div class="">{{req.services.chairs}}</div>
+        <img :src="img" v-for="(img, index) in showImgs.chairs" :key="index"/>
+      </div>
+      <div class="collection">
+        <h5>tables</h5>
+        <div class="">{{req.services.tables}}</div>
+        <img :src="img" v-for="(img, index) in showImgs.tables" :key="index"/>
+      </div>
+      <div class="collection">
+        <h5>shows</h5>
+        <div class="">{{req.services.shows}}</div>
+        <img :src="img" v-for="(img, index) in showImgs.shows" :key="index"/>
+      </div>
+      <div class="collection">
+        <h5>drinks</h5>
+        <div class="">{{req.services.drinks}}</div>
+        <img :src="img" v-for="(img, index) in showImgs.drinks" :key="index"/>
+      </div>
+      <div class="collection">
+        <h5>buffet</h5>
+        <div class="">{{req.services.buffet}}</div>
+        <img :src="img" v-for="(img, index) in showImgs.buffet" :key="index"/>
+      </div>
+      <div class="collection">
+        <h5>setMenu</h5>
+        <div class="">{{req.services.setMenu}}</div>
+        <img :src="img" v-for="(img, index) in showImgs.setMenu" :key="index"/>
+      </div>
+      <div class="collection">
+        <h5>select all days that allready booked</h5>
+        <span class="ml-2" v-for="(date, index) in req.services.dates" :key="index">{{ date }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import mapboxgl from 'mapbox-gl'
 import MNGServices from '../../../services/MNG-Services'
 
 export default {
   data () {
     return {
-      dates: {
-        date: []
-      },
+      longitude: null,
+      latitude: null,
       showImgs: {
         test: null,
         mainIMGS: [],
+        songer: [],
         Dj: [],
         flint: [],
         videoTeam: [],
@@ -246,6 +298,7 @@ export default {
           numOfFiles: null
         },
         services: {
+          songer: '',
           Dj: '',
           flint: '',
           videoTeam: '',
@@ -260,6 +313,7 @@ export default {
 
 // ==========================================
       visibility: {
+        songer: false,
         Dj: false,
         flint: false,
         videoTeam: false,
@@ -279,11 +333,13 @@ export default {
           city: null,
           address: null,
           NOPeople: null,
+          hourPrice: null,
           priceRent: null,
           detail: null,
           ImgsName: []
         },
         services: {
+          songer: [],
           Dj: [],
           flint: [],
           videoTeam: [],
@@ -327,6 +383,12 @@ export default {
 
       this.showImgs[sort].push(this.showImgs.test)
       this.req.services[sort].push(obj)
+
+
+         this.preReq.services[sort] = ''
+         $(`#${sort} input:nth-of-type(2)`).val('')
+         $(`#${sort} input:nth-of-type(3)`).val('')
+
       // console.log(this.req)
     },
 
@@ -438,7 +500,7 @@ async sendReq() {
 // CHECK INFO FIELDS IN REQ OBJ
     const areAllFieldsFilledIn = Object.keys(this.req.info).every(key => !!this.req.info[key])
     if (!areAllFieldsFilledIn) {
-      // console.log('fill all the require fields')
+      console.log('fill all the require fields')
       return
     }
 
@@ -460,11 +522,10 @@ async sendReq() {
 // SEND ALL REQ TO BACK-END
       console.log(this.req)
 
-// SEND ALL REQ DATA TO BACK-END
 
 
       } catch (error) {
-        // console.log(error.response)
+        console.log(error.response)
       }
     }
   },
@@ -488,27 +549,39 @@ async sendReq() {
 
       return date
     }
-  },
-
-  mounted() {
-  // CONFIGURATION FOR THE MAPBOX
-    mapboxgl.accessToken = 'pk.eyJ1IjoibW9oYW1lZDAwMSIsImEiOiJjamt1MGk5MHUwMXgwM3BxazN3cXU5M2RtIn0.JfdQvIy0cRbQOanBaL2nww';
-    new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9',
-        center: [26.8206, 30.8025],
-        zoom: 3
-    })
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+form {
+  width: 600px;
+  margin: 0 20px;
+  float: left;
+  padding: 10px;
+  border: 2px solid #ddd;
+}
+
+#showData {
+  width: 600px;
+  margin: 0 20px;
+  float: left;
+  border: 2px solid #ddd;
+  padding: 10px
+}
+
+.collection {
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 5px 5px 5px #999;
+  margin-bottom: 10px
+}
+
 img{
   width: 100px;
   height: 100px;
-  border: 3px solid #777;
+  border: 4px solid #777;
   margin: 5px 4px;
   border-radius: 5px
 }
@@ -521,8 +594,4 @@ input{
   margin: 5px 10px
 }
 
-#map {
-  width: 100%;
-  height: 350px;
-}
 </style>
