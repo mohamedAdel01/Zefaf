@@ -15,8 +15,8 @@
         <input class="form-control" type="number" placeholder="price for rent the wedding hall empty" v-model="req.info.priceRent"/>
         <textarea class="form-control" placeholder="type some information" v-model="req.info.detail"></textarea>
 
-      <!-- MAIN IMGS FOR THE WEDDING HALL -->
         <div class="clearfix"></div>
+      <!-- MAIN IMGS FOR THE WEDDING HALL -->
         <div class="mt-2 mb-3 border border-info">
           <h5>select some picture </h5>
           <div class="showimg">
@@ -34,7 +34,7 @@
 
         <div class="service-prices">
           <h5 class="mr-5">songer:</h5>
-          <input type="checkbox" id="songer" v-model="visibility.songer">
+          <input type="checkbox" v-model="visibility.songer">
           <label for="checkbox">available: {{ visibility.songer }}</label><br/>
 
           <div v-if="visibility.songer" class="service-options" id="songer">
@@ -50,7 +50,7 @@
 
         <div class="service-prices">
           <h5 class="mr-5">Dj-music:</h5>
-          <input type="checkbox" id="Dj" v-model="visibility.Dj">
+          <input type="checkbox" v-model="visibility.Dj">
           <label for="checkbox">available: {{ visibility.Dj }}</label><br/>
 
           <div v-if="visibility.Dj" class="service-options" id="Dj">
@@ -66,7 +66,7 @@
 
         <div class="service-prices">
           <h5 class="mr-5">the flint:</h5>
-          <input type="checkbox" id="flint" v-model="visibility.flint">
+          <input type="checkbox" v-model="visibility.flint">
           <label for="checkbox">available: {{ visibility.flint }}</label><br/>
 
           <div v-if="visibility.flint" class="service-options" id="flint">
@@ -82,7 +82,7 @@
 
         <div class="service-prices">
           <h5 class="mr-5">video team:</h5>
-          <input type="checkbox" id="videoTeam" v-model="visibility.videoTeam">
+          <input type="checkbox" v-model="visibility.videoTeam">
           <label for="checkbox">available: {{ visibility.videoTeam }}</label><br/>
 
           <div v-if="visibility.videoTeam" class="service-options" id="videoTeam">
@@ -98,7 +98,7 @@
 
         <div class="service-prices">
           <h5 class="mr-5">chairs:</h5>
-          <input type="checkbox" id="chairs" v-model="visibility.chairs">
+          <input type="checkbox" v-model="visibility.chairs">
           <label for="checkbox">available: {{ visibility.chairs }}</label><br/>
 
           <div v-if="visibility.chairs" class="service-options" id="chairs">
@@ -114,7 +114,7 @@
 
         <div class="service-prices">
           <h5 class="mr-5">tables:</h5>
-          <input type="checkbox" id="tables" v-model="visibility.tables">
+          <input type="checkbox" v-model="visibility.tables">
           <label for="checkbox">available: {{ visibility.tables }}</label><br/>
 
           <div v-if="visibility.tables" class="service-options" id="tables">
@@ -130,7 +130,7 @@
 
         <div class="service-prices">
           <h5 class="mr-5">shows:</h5>
-          <input type="checkbox" id="shows" v-model="visibility.shows">
+          <input type="checkbox" v-model="visibility.shows">
           <label for="checkbox">available: {{ visibility.shows }}</label><br/>
 
           <div v-if="visibility.shows" class="service-options" id="shows">
@@ -146,7 +146,7 @@
 
         <div class="service-prices">
           <h5 class="mr-5">drinks:</h5>
-          <input type="checkbox" id="drinks" v-model="visibility.drinks">
+          <input type="checkbox"  v-model="visibility.drinks">
           <label for="checkbox">available: {{ visibility.drinks }}</label><br/>
 
           <div v-if="visibility.drinks" class="service-options" id="drinks">
@@ -162,7 +162,7 @@
 
         <div class="service-prices">
           <h5 class="mr-5">buffet:</h5>
-          <input type="checkbox" id="buffet" v-model="visibility.buffet">
+          <input type="checkbox" v-model="visibility.buffet">
           <label for="checkbox">available: {{ visibility.buffet }}</label><br/>
 
           <div v-if="visibility.buffet" class="service-options" id="buffet">
@@ -178,7 +178,7 @@
 
         <div class="service-prices">
           <h5 class="mr-5">setMenu:</h5>
-          <input type="checkbox" id="setMenu" v-model="visibility.setMenu">
+          <input type="checkbox" v-model="visibility.setMenu">
           <label for="checkbox">available: {{ visibility.setMenu }}</label><br/>
 
           <div v-if="visibility.setMenu" class="service-options" id="setMenu">
@@ -194,7 +194,7 @@
       <div class="bookedDays">
         <h4>select all days that allready booked</h4>
 
-        <input class= "d-block" type="date" name="" id="">
+        <input class= "d-block" type="date">
         <button class="mt-3 btn btn-warning" @click.prevent="addDate">add date</button>
         <button class="mt-3 btn btn-danger" @click.prevent="undoDate">undo date</button>
       </div>
@@ -477,7 +477,7 @@ async saveServicesIMGS() {
   })
 },
 
-// ================{ GET ALL IMAGES NAME IN DB }================
+// ================{ GET ALL IMAGES NAME FROM DB }================
 async saveAllImgs() {
 // DELETE EMPTY ARRAY IN SERVICES OBJ
     Object.keys(this.req.services).filter(key => {

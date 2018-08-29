@@ -1,6 +1,6 @@
 <template>
   <div style="height:1000px">
-    <h1 class="mx-auto mt-2" style="width: 600px">Invitaion Cards list page content</h1><hr/>
+    <h1 class="mx-auto mt-2" style="width: 600px">Photographers list page content</h1><hr/>
     <form @submit="sendReq()">
       <h4>main info</h4>
       <section id="main-info">
@@ -8,21 +8,48 @@
         <input class="form-control" type="text" placeholder="governorate" v-model="req.info.governorate"/>
         <input class="form-control" type="text" placeholder="city" v-model="req.info.city"/>
         <input class="form-control" type="text" placeholder="address" v-model="req.info.address"/>
+
+        <!-- MAIN IMGS FOR THE WEDDING HALL -->
+        <div class="mt-2 mb-3 border border-info">
+          <h5>select some picture </h5>
+          <div class="showimg">
+            <img :src="img" v-for="(img , index) in showImgs.mainIMGS" :key="index"/>
+          </div>
+          <input class="pics" type="file" name="file" multiple @change="showMainIMGS($event)"/>
+        </div>
       </section><hr/>
 
       <section id="service-info">
-        <div>
-          <h5>Invitaion Cards:</h5>
-          <input type="checkbox" v-model="visibility.InvitaionCards">
-          <label for="checkbox">available: {{visibility.InvitaionCards}}</label><br/>
+        <h4>Services and Prices</h4>
 
-          <div v-if="visibility.InvitaionCards" class="service-options" id="InvitaionCards">
-            <span>image for car: </span><input type="file" @change="showServiceIMG($event, 'InvitaionCards')"/><br/>
-            <span>sort of car: </span><input class="form-control" type="text" placeholder="sort of car"/><br/>
-            <span>price: </span><input class="form-control" type="number" placeholder="price"/><br/>
-            <button class="btn btn-success" @click.prevent="addItem('InvitaionCards')">add</button>
-            <button class="btn btn-danger" @click.prevent="undoItem('InvitaionCards')">undo</button>
-          </div><hr/>
+        <div class="service-prices">
+          <h5 class="mr-5">photo Session:</h5>
+          <input type="checkbox" v-model="visibility.photoSession">
+          <label for="checkbox">available: {{ visibility.photoSession }}</label><br/>
+
+          <div v-if="visibility.photoSession" class="service-options" id="photoSession">
+            <span>image: </span><input type="file" @change="showServiceIMG($event, 'photoSession')"/><br/>
+            <span>details: </span><textarea class="form-control" placeholder="type all details"></textarea><br/>
+            <span>price: </span><input class="form-control" type="number"/><br/>
+            <button class="btn btn-success" @click.prevent="addItem('photoSession')">add</button>
+            <button class="btn btn-danger" @click.prevent="undoItem('photoSession')">undo</button>
+          </div>
+        </div><hr/>
+
+        <div class="service-prices">
+          <h5 class="mr-5">wedding offers:</h5>
+          <input type="checkbox" v-model="visibility.weddingOffers">
+          <label for="checkbox">available: {{ visibility.weddingOffers }}</label><br/>
+
+          <div v-if="visibility.weddingOffers" class="service-options" id="weddingOffers">
+            <span>image: </span><input type="file" @change="showServiceIMG($event, 'weddingOffers')"/><br/>
+            <span>details: </span><textarea class="form-control" placeholder="type all details"></textarea><br/>
+            <span>price: </span><input class="form-control" type="number"/><br/>
+            <button class="btn btn-success" @click.prevent="addItem('weddingOffers')">add</button>
+            <button class="btn btn-danger" @click.prevent="undoItem('weddingOffers')">undo</button>
+          </div>
+        </div><hr/>
+
           <div class="bookedDays">
             <h4>select all days that allready booked</h4>
 
@@ -30,19 +57,25 @@
             <button class="mt-3 btn btn-warning" @click.prevent="addDate">add date</button>
             <button class="mt-3 btn btn-danger" @click.prevent="undoDate">undo date</button>
           </div>
-        </div>
       </section>
-       <button class="btn btn-info btn-block mt-5" @click.prevent="saveServicesIMGS">Save all images</button>
+       <button class="btn btn-info btn-block mt-5" @click.prevent="saveAllImgs">Save all images</button>
       <input class="btn btn-success btn-block mt-5" type="submit"/>
     </form>
 
     <div id="showData">
       <h4>the existed services</h4><hr/>
       <div class="collection">
-        <h5>Invitaion Cards</h5>
-        <div class="">{{req.services.InvitaionCards}}</div>
-        <img :src="img" v-for="(img, index) in showImgs.InvitaionCards" :key="index"/>
+        <h5>Photo Session</h5>
+        <div class="">{{req.services.photoSession}}</div>
+        <img :src="img" v-for="(img, index) in showImgs.photoSession" :key="index"/>
       </div>
+
+      <div class="collection">
+        <h5>Wedding Offers</h5>
+        <div class="">{{req.services.weddingOffers}}</div>
+        <img :src="img" v-for="(img, index) in showImgs.weddingOffers" :key="index"/>
+      </div>
+
       <div class="collection">
         <h5>select all days that allready booked</h5>
         <span class="ml-2 d-block" v-for="(date, index) in req.dates" :key="index">{{index + 1}}) {{ date }}</span>
@@ -59,22 +92,28 @@ export default {
     return {
        showImgs: {
         selectedIMG: null,
-        InvitaionCards: []
+        mainIMGS: [],
+        photoSession: [],
+        weddingOffers: []
       },
       error: null,
 
 // =================={ PREREQ }========================
       preReq: {
         info: {
+          imgSelected: [],
+          numOfFiles: null
         },
         services: {
-          InvitaionCards: []
+          photoSession: [],
+          weddingOffers: []
         }
       },
 
 // =================={ VISIBILITY }========================
       visibility: {
-        InvitaionCards: false
+        photoSession: false,
+        weddingOffers: false
       },
 
 // =================={ REQ }========================
@@ -83,10 +122,12 @@ export default {
           name: null,
           governorate: null,
           city: null,
-          address: null
+          address: null,
+          ImgsName: []
         },
         services: {
-          InvitaionCards: []
+          photoSession: [],
+          weddingOffers: []
         },
         dates:[]
       }
@@ -98,8 +139,8 @@ export default {
     addItem(sort) {
       var obj= {
         imgID: this.preReq.services[sort],
-        name: $(`#${sort} input:nth-of-type(2)`).val(),
-        price: $(`#${sort} input:nth-of-type(3)`).val()
+        details: $(`#${sort} textarea`).val(),
+        price: $(`#${sort} input:nth-of-type(2)`).val()
       }
 
       if (obj.imgID.length === 0) {
@@ -124,8 +165,8 @@ export default {
       this.req.services[sort].push(obj)
 
       this.preReq.services[sort] = ''
+      $(`#${sort} textarea`).val('')
       $(`#${sort} input:nth-of-type(2)`).val('')
-      $(`#${sort} input:nth-of-type(3)`).val('')
 
     },
 
@@ -147,6 +188,29 @@ export default {
       this.req.dates.pop()
     },
 
+// ================{ SHOW MAIN IMGS }================
+async showMainIMGS(e) {
+      this.preReq.info.imgSelected = []
+      this.showImgs.mainIMGS = []
+
+      var files = await e.target.files
+      var numOfFiles = files.length
+      this.preReq.info.numOfFiles = numOfFiles
+
+      this.preReq.info.imgSelected.push(files)
+      // console.log(this.preReq.info.imgSelected)
+
+      for(let i = 0; i < numOfFiles; i++) {
+        var file = files[i]
+        var picReader = new FileReader()
+        picReader.onload = (event) => {
+          var picFile = event.target
+          this.showImgs.mainIMGS.push(picFile.result)
+        }
+        picReader.readAsDataURL(file)
+      }
+    },
+
 // ================{ SHOW SERVICES IMGS }================
 async showServiceIMG(e, sort) {
       this.showImgs.selectedIMG = null
@@ -161,6 +225,19 @@ async showServiceIMG(e, sort) {
       picReader.readAsDataURL(file[0])
     },
 
+// ================{ SAVE MAIN IMGS }================
+  async saveMainIMGS() {
+    const fd = new FormData()
+    for (let i = 0; i < this.preReq.info.numOfFiles; i++) {
+      fd.append('imagesfile', this.preReq.info.imgSelected[0][i])
+    }
+    let res = (await MNGServices.saveImages(fd, 'Photographers', 'main')).data
+    // console.log(res)
+    res.map((img) => {
+      this.req.info.ImgsName.push(img.filename)
+    })
+  },
+
 // ================{ SAVE SERVICES IMGS }================
 async saveServicesIMGS() {
       Object.keys(this.req.services).map(async (key) => {
@@ -169,7 +246,7 @@ async saveServicesIMGS() {
         for (let i = 0; i < this.req.services[key].length; i++) {
           fd.append('imagesfile', this.req.services[key][i].imgID[0])
         }
-        let res = (await MNGServices.saveImages(fd, 'InvitaionCards', key)).data
+        let res = (await MNGServices.saveImages(fd, 'Photographers', key)).data
 
         res.map((img) => {
           this.req.services[key].forEach((single) => {
@@ -180,8 +257,30 @@ async saveServicesIMGS() {
         })
 
       })
-      console.log('done')
     },
+
+// ================{ GET ALL IMAGES NAME FROM DB }================
+async saveAllImgs() {
+// DELETE EMPTY ARRAY IN SERVICES OBJ
+    Object.keys(this.req.services).filter(key => {
+      if(this.req.services[key].length === 0) {
+        delete this.req.services[key]
+      }
+    })
+
+    try {
+  // SEND MAIN IMAGES TO BACK-END
+        await this.saveMainIMGS()
+
+  // SAVE SERVICES IMAGES TO BACK-END
+        await this.saveServicesIMGS()
+        console.log('done')
+
+    } catch (error) {
+      console.log(error)
+      console.log(error.response)
+    }
+  },
 
 // ================{ SEND REQ }================
 async sendReq() {
@@ -193,8 +292,8 @@ async sendReq() {
     }
 
       try {
-      // SEND ALL REQ TO BACK-END
-        let DataRes = (await MNGServices.addMember(this.req, 'MNG-InvitationCards-Member')).data
+     // SEND ALL REQ TO BACK-END
+        let DataRes = (await MNGServices.addMember(this.req, 'MNG-Photographers-Member')).data
 
         console.log(DataRes)
 
@@ -243,4 +342,3 @@ img{
   margin: 10px 0
 }
 </style>
-
