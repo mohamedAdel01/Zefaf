@@ -4,7 +4,7 @@
     <form @submit="sendReq">
 
 <!-- ===================== { MAIN-INFO } ======================== -->
-      <section class="main-info">
+      <section id="main-info">
         <h4>main-info</h4>
         <input class="form-control" type="text" placeholder="name" v-model="req.info.name"/>
         <input class="form-control" type="text" placeholder="governorate" v-model="req.info.governorate"/>
@@ -39,8 +39,8 @@
 
           <div v-if="visibility.songer" class="service-options" id="songer">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'songer')"/><br/>
-            <span>name: </span><input type="text"/><br/>
-            <span>price: </span><input type="number"/> pounds<br/>
+            <span>name: </span><input class="form-control" type="text"/><br/>
+            <span>price: </span><input class="form-control" type="number"/><br/>
             <button @click.prevent="add('songer')">add</button>
             <button @click.prevent="undo('songer')">undo</button>
           </div>
@@ -55,8 +55,8 @@
 
           <div v-if="visibility.Dj" class="service-options" id="Dj">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'Dj')"/><br/>
-            <span>name: </span><input type="text"/><br/>
-            <span>price: </span><input type="number"/> pounds<br/>
+            <span>name: </span><input class="form-control" type="text"/><br/>
+            <span>price: </span><input class="form-control" type="number"/><br/>
             <button @click.prevent="add('Dj')">add</button>
             <button @click.prevent="undo('Dj')">undo</button>
           </div>
@@ -71,8 +71,8 @@
 
           <div v-if="visibility.flint" class="service-options" id="flint">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'flint')"/><br/>
-            <span>name: </span><input type="text"/><br/>
-            <span>price: </span><input type="number"/> pounds<br/>
+            <span>name: </span><input class="form-control" type="text"/><br/>
+            <span>price: </span><input class="form-control" type="number"/><br/>
             <button @click.prevent="add('flint')">add</button>
             <button @click.prevent="undo('flint')">undo</button>
           </div>
@@ -87,8 +87,8 @@
 
           <div v-if="visibility.videoTeam" class="service-options" id="videoTeam">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'videoTeam')"/><br/>
-            <span>name: </span><input type="text"/><br/>
-            <span>price: </span><input type="number"/> pounds<br/>
+            <span>name: </span><input class="form-control" type="text"/><br/>
+            <span>price: </span><input class="form-control" type="number"/><br/>
             <button @click.prevent="add('videoTeam')">add</button>
             <button @click.prevent="undo('videoTeam')">undo</button>
           </div>
@@ -103,8 +103,8 @@
 
           <div v-if="visibility.chairs" class="service-options" id="chairs">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'chairs')"/><br/>
-            <span>name: </span><input type="text"/><br/>
-            <span>price: </span><input type="number"/> pounds<br/>
+            <span>name: </span><input class="form-control" type="text"/><br/>
+            <span>price: </span><input class="form-control" type="number"/><br/>
             <button @click.prevent="add('chairs')">add</button>
             <button @click.prevent="undo('chairs')">undo</button>
           </div>
@@ -119,8 +119,8 @@
 
           <div v-if="visibility.tables" class="service-options" id="tables">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'tables')"/><br/>
-            <span>name: </span><input type="text"/><br/>
-            <span>price: </span><input type="number"/> pounds<br/>
+            <span>name: </span><input class="form-control" type="text"/><br/>
+            <span>price: </span><input class="form-control" type="number"/><br/>
             <button @click.prevent="add('tables')">add</button>
             <button @click.prevent="undo('tables')">undo</button>
           </div>
@@ -135,8 +135,8 @@
 
           <div v-if="visibility.shows" class="service-options" id="shows">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'shows')"/><br/>
-            <span>name: </span><input type="text"/><br/>
-            <span>price: </span><input type="number"/> pounds<br/>
+            <span>name: </span><input class="form-control" type="text"/><br/>
+            <span>price: </span><input class="form-control" type="number"/><br/>
             <button @click.prevent="add('shows')">add</button>
             <button @click.prevent="undo('shows')">undo</button>
           </div>
@@ -151,8 +151,8 @@
 
           <div v-if="visibility.drinks" class="service-options" id="drinks">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'drinks')"/><br/>
-            <span>name: </span><input type="text"/><br/>
-            <span>price: </span><input type="number"/> pounds<br/>
+            <span>name: </span><input class="form-control" type="text"/><br/>
+            <span>price: </span><input class="form-control" type="number"/><br/>
             <button @click.prevent="add('drinks')">add</button>
             <button @click.prevent="undo('drinks')">undo</button>
           </div>
@@ -167,8 +167,8 @@
 
           <div v-if="visibility.buffet" class="service-options" id="buffet">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'buffet')"/><br/>
-            <span>name: </span><input type="text"/><br/>
-            <span>price: </span><input type="number"/> pounds<br/>
+            <span>name: </span><input class="form-control" type="text"/><br/>
+            <span>price: </span><input class="form-control" type="number"/><br/>
             <button @click.prevent="add('buffet')">add</button>
             <button @click.prevent="undo('buffet')">undo</button>
           </div>
@@ -183,8 +183,8 @@
 
           <div v-if="visibility.setMenu" class="service-options" id="setMenu">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'setMenu')"/><br/>
-            <span>name: </span><input type="text"/><br/>
-            <span>price: </span><input type="number"/> pounds<br/>
+            <span>name: </span><input class="form-control" type="text"/><br/>
+            <span>price: </span><input class="form-control" type="number"/><br/>
             <button @click.prevent="add('setMenu')">add</button>
             <button @click.prevent="undo('setMenu')">undo</button>
           </div>
@@ -511,7 +511,7 @@ async sendReq() {
 
       try {
       // SEND ALL REQ TO BACK-END
-        let DataRes = (await MNGServices.addMember(this.req, 'MNG-Members')).data
+        let DataRes = (await MNGServices.addMember(this.req, 'MNG-WeddingHalls-Member')).data
 
         console.log(DataRes)
 
@@ -556,12 +556,8 @@ img{
   border-radius: 5px
 }
 
-input{
-  margin: 5px 0
-}
-
-.service-prices input{
-  margin: 5px 10px
+#main-info input{
+  margin: 10px 0
 }
 
 </style>
