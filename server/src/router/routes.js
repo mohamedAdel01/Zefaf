@@ -10,10 +10,15 @@ const IMGControlles = require('../../controlles/IMG-Controlles')
 
 // ---------------------------{ ROUTING }-----------------------------------
 
-// MNG ROUTING
+// MNG ROUTING {POST} REQ
+  // AUTH
   router.post('/MNG/adduser', authPolices.register, MNGAuthControlles.MNGAddUser)
   router.post('/MNG/login', MNGAuthControlles.MNGLogin)
 
+  // ADD MEMBERS
+  router.post('/MNG/addMember/:model', MNGDataControlles.addMember)
+
+// MNG ROUTING {GET} REQ
   router.get('/MNG/getservicesitems',  MNGDataControlles.getServicesItems)
 
 // AUTHENTICATION ROUTING

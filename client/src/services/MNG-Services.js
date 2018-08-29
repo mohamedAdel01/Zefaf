@@ -11,5 +11,9 @@ export default {
 
   saveImages(req, folder, sub) {
     return Api().post(`/saveImages/${folder}/${sub}`, req)
+  },
+
+  addMember(req , model) {
+    return Api().post(`/MNG/addMember/${model}`, req)
   }
 }

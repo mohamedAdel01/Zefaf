@@ -1,7 +1,7 @@
 <template>
   <div style="height:3000px">
     <h1 class="mx-auto mt-2" style="width: 600px">wedding halls list page content</h1><hr/>
-    <form @submit.prevent="sendReq">
+    <form @submit="sendReq">
 
 <!-- ===================== { MAIN-INFO } ======================== -->
       <section class="main-info">
@@ -15,13 +15,14 @@
         <input class="form-control" type="number" placeholder="price for rent the wedding hall empty" v-model="req.info.priceRent"/>
         <textarea class="form-control" placeholder="type some information" v-model="req.info.detail"></textarea>
 
+      <!-- MAIN IMGS FOR THE WEDDING HALL -->
         <div class="clearfix"></div>
         <div class="mt-2 mb-3 border border-info">
-          <p>select some picture </p>
-          <input class="pics" type="file" name="file" multiple @change="showMainIMGS($event)"/>
+          <h5>select some picture </h5>
           <div class="showimg">
             <img :src="img" v-for="(img , index) in showImgs.mainIMGS" :key="index"/>
           </div>
+          <input class="pics" type="file" name="file" multiple @change="showMainIMGS($event)"/>
         </div><hr/>
       </section>
 
@@ -29,160 +30,160 @@
       <section class="sub-services">
         <h4>services-prices</h4>
 
-<!-- ===== { songer } ===== -->
+      <!-- ===== { songer } ===== -->
 
         <div class="service-prices">
-          <p class="mr-5">songer:</p>
+          <h5 class="mr-5">songer:</h5>
           <input type="checkbox" id="songer" v-model="visibility.songer">
           <label for="checkbox">available: {{ visibility.songer }}</label><br/>
 
           <div v-if="visibility.songer" class="service-options" id="songer">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'songer')"/><br/>
-            <span>type: </span><input type="text"/><br/>
+            <span>name: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
             <button @click.prevent="add('songer')">add</button>
             <button @click.prevent="undo('songer')">undo</button>
           </div>
         </div><hr/>
 
-<!-- ===== { Dj } ===== -->
+      <!-- ===== { Dj } ===== -->
 
         <div class="service-prices">
-          <p class="mr-5">Dj-music:</p>
+          <h5 class="mr-5">Dj-music:</h5>
           <input type="checkbox" id="Dj" v-model="visibility.Dj">
           <label for="checkbox">available: {{ visibility.Dj }}</label><br/>
 
           <div v-if="visibility.Dj" class="service-options" id="Dj">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'Dj')"/><br/>
-            <span>type: </span><input type="text"/><br/>
+            <span>name: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
             <button @click.prevent="add('Dj')">add</button>
             <button @click.prevent="undo('Dj')">undo</button>
           </div>
         </div><hr/>
 
-<!-- ===== { flint } ===== -->
+      <!-- ===== { flint } ===== -->
 
         <div class="service-prices">
-          <p class="mr-5">the flint:</p>
+          <h5 class="mr-5">the flint:</h5>
           <input type="checkbox" id="flint" v-model="visibility.flint">
           <label for="checkbox">available: {{ visibility.flint }}</label><br/>
 
           <div v-if="visibility.flint" class="service-options" id="flint">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'flint')"/><br/>
-            <span>type: </span><input type="text"/><br/>
+            <span>name: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
             <button @click.prevent="add('flint')">add</button>
             <button @click.prevent="undo('flint')">undo</button>
           </div>
         </div><hr/>
 
-<!-- ===== { video team } ===== -->
+      <!-- ===== { video team } ===== -->
 
         <div class="service-prices">
-          <p class="mr-5">video team:</p>
+          <h5 class="mr-5">video team:</h5>
           <input type="checkbox" id="videoTeam" v-model="visibility.videoTeam">
           <label for="checkbox">available: {{ visibility.videoTeam }}</label><br/>
 
           <div v-if="visibility.videoTeam" class="service-options" id="videoTeam">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'videoTeam')"/><br/>
-            <span>type: </span><input type="text"/><br/>
+            <span>name: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
             <button @click.prevent="add('videoTeam')">add</button>
             <button @click.prevent="undo('videoTeam')">undo</button>
           </div>
         </div><hr/>
 
-<!-- ===== { chairs } ===== -->
+      <!-- ===== { chairs } ===== -->
 
         <div class="service-prices">
-          <p class="mr-5">chairs:</p>
+          <h5 class="mr-5">chairs:</h5>
           <input type="checkbox" id="chairs" v-model="visibility.chairs">
           <label for="checkbox">available: {{ visibility.chairs }}</label><br/>
 
           <div v-if="visibility.chairs" class="service-options" id="chairs">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'chairs')"/><br/>
-            <span>type: </span><input type="text"/><br/>
+            <span>name: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
             <button @click.prevent="add('chairs')">add</button>
             <button @click.prevent="undo('chairs')">undo</button>
           </div>
         </div><hr/>
 
-<!-- ===== { tables } ===== -->
+      <!-- ===== { tables } ===== -->
 
         <div class="service-prices">
-          <p class="mr-5">tables:</p>
+          <h5 class="mr-5">tables:</h5>
           <input type="checkbox" id="tables" v-model="visibility.tables">
           <label for="checkbox">available: {{ visibility.tables }}</label><br/>
 
           <div v-if="visibility.tables" class="service-options" id="tables">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'tables')"/><br/>
-            <span>type: </span><input type="text"/><br/>
+            <span>name: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
             <button @click.prevent="add('tables')">add</button>
             <button @click.prevent="undo('tables')">undo</button>
           </div>
         </div><hr/>
 
-<!-- ===== { shows } ===== -->
+      <!-- ===== { shows } ===== -->
 
         <div class="service-prices">
-          <p class="mr-5">shows:</p>
+          <h5 class="mr-5">shows:</h5>
           <input type="checkbox" id="shows" v-model="visibility.shows">
           <label for="checkbox">available: {{ visibility.shows }}</label><br/>
 
           <div v-if="visibility.shows" class="service-options" id="shows">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'shows')"/><br/>
-            <span>type: </span><input type="text"/><br/>
+            <span>name: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
             <button @click.prevent="add('shows')">add</button>
             <button @click.prevent="undo('shows')">undo</button>
           </div>
         </div><hr/>
 
-<!-- ===== { drinks } ===== -->
+      <!-- ===== { drinks } ===== -->
 
         <div class="service-prices">
-          <p class="mr-5">drinks:</p>
+          <h5 class="mr-5">drinks:</h5>
           <input type="checkbox" id="drinks" v-model="visibility.drinks">
           <label for="checkbox">available: {{ visibility.drinks }}</label><br/>
 
           <div v-if="visibility.drinks" class="service-options" id="drinks">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'drinks')"/><br/>
-            <span>type: </span><input type="text"/><br/>
+            <span>name: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
             <button @click.prevent="add('drinks')">add</button>
             <button @click.prevent="undo('drinks')">undo</button>
           </div>
         </div><hr/>
 
-<!-- ===== { buffet } ===== -->
+      <!-- ===== { buffet } ===== -->
 
         <div class="service-prices">
-          <p class="mr-5">buffet:</p>
+          <h5 class="mr-5">buffet:</h5>
           <input type="checkbox" id="buffet" v-model="visibility.buffet">
           <label for="checkbox">available: {{ visibility.buffet }}</label><br/>
 
           <div v-if="visibility.buffet" class="service-options" id="buffet">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'buffet')"/><br/>
-            <span>type: </span><input type="text"/><br/>
+            <span>name: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
             <button @click.prevent="add('buffet')">add</button>
             <button @click.prevent="undo('buffet')">undo</button>
           </div>
         </div><hr/>
 
-<!-- ===== { setMenu } ===== -->
+      <!-- ===== { setMenu } ===== -->
 
         <div class="service-prices">
-          <p class="mr-5">setMenu:</p>
+          <h5 class="mr-5">setMenu:</h5>
           <input type="checkbox" id="setMenu" v-model="visibility.setMenu">
           <label for="checkbox">available: {{ visibility.setMenu }}</label><br/>
 
           <div v-if="visibility.setMenu" class="service-options" id="setMenu">
             <span>image: </span><input type="file" @change="showServiceIMG($event, 'setMenu')"/><br/>
-            <span>type: </span><input type="text"/><br/>
+            <span>name: </span><input type="text"/><br/>
             <span>price: </span><input type="number"/> pounds<br/>
             <button @click.prevent="add('setMenu')">add</button>
             <button @click.prevent="undo('setMenu')">undo</button>
@@ -190,23 +191,20 @@
         </div><hr/>
 
 <!-- ===================== { CALENDER } ======================== -->
+      <div class="bookedDays">
         <h4>select all days that allready booked</h4>
 
-        <select>
-          <option :value="days" v-for="(days, index) in calendar.days" :key="index">{{ days }}</option>
-        </select>
-        <select>
-          <option :value="months" v-for="(months, index) in calendar.months" :key="index">{{ months }}</option>
-        </select>
-        <select>
-          <option :value="years" v-for="(years, index) in calendar.years" :key="index">{{ years }}</option>
-        </select>
+        <input class= "d-block" type="date" name="" id="">
         <button class="mt-3 btn btn-warning" @click.prevent="addDate">add date</button>
         <button class="mt-3 btn btn-danger" @click.prevent="undoDate">undo date</button>
+      </div>
+
       </section>
+      <button class="btn btn-info btn-block mt-5" @click.prevent="saveAllImgs">Save all images</button>
       <input type="submit" class="btn btn-success btn-block"/>
     </form>
 
+<!-- ===================== { ALL CHOOOSEN SERVICES } ======================== -->
     <div id="showData">
       <h4>the existed services</h4><hr/>
       <div class="collection">
@@ -261,7 +259,7 @@
       </div>
       <div class="collection">
         <h5>select all days that allready booked</h5>
-        <span class="ml-2" v-for="(date, index) in req.services.dates" :key="index">{{ date }}</span>
+        <span class="ml-2 d-block" v-for="(date, index) in req.dates" :key="index">{{index + 1}}) {{ date }}</span>
       </div>
     </div>
   </div>
@@ -273,10 +271,8 @@ import MNGServices from '../../../services/MNG-Services'
 export default {
   data () {
     return {
-      longitude: null,
-      latitude: null,
       showImgs: {
-        test: null,
+        selectedIMG: null,
         mainIMGS: [],
         songer: [],
         Dj: [],
@@ -291,7 +287,7 @@ export default {
       },
       error: null,
 
-// ==========================================
+// =================={ PREREQ }========================
       preReq: {
         info: {
           imgSelected: [],
@@ -311,7 +307,7 @@ export default {
         }
       },
 
-// ==========================================
+// =================={ VISIBILITY }========================
       visibility: {
         songer: false,
         Dj: false,
@@ -325,7 +321,7 @@ export default {
         setMenu: false
       },
 
-// ==========================================
+// =================={ REQ }========================
       req: {
         info: {
           name: null,
@@ -348,18 +344,18 @@ export default {
           shows: [],
           drinks: [],
           buffet: [],
-          setMenu: [],
-          dates: []
-        }
+          setMenu: []
+        },
+        dates:[]
       }
     }
   },
   methods: {
-
+// ================{ ADDING SERVICES }================
     add(sort) {
       var obj= {
         imgID: this.preReq.services[sort],
-        type: $(`#${sort} input:nth-of-type(2)`).val(),
+        name: $(`#${sort} input:nth-of-type(2)`).val(),
         price: $(`#${sort} input:nth-of-type(3)`).val()
       }
 
@@ -370,58 +366,45 @@ export default {
       this.error = null
       const areAllFieldsFilledIn = Object.keys(obj).every(key => !!obj[key])
       if (!areAllFieldsFilledIn) {
-        this.error = 'please fill the inputs correctly!!' //will show as notification
+        this.error = 'please fill the INPUTS correctly!!' //will show as notification
         alert(this.error)
         return
       }
 
       if(obj.price <= 0) {
-        this.error = 'please fill the price correctly!!' //will show as notification
+        this.error = 'please fill the PRICE correctly!!' //will show as notification
         alert(this.error)
         return
       }
 
-      this.showImgs[sort].push(this.showImgs.test)
+      this.showImgs[sort].push(this.showImgs.selectedIMG)
       this.req.services[sort].push(obj)
 
+      this.preReq.services[sort] = ''
+      $(`#${sort} input:nth-of-type(2)`).val('')
+      $(`#${sort} input:nth-of-type(3)`).val('')
 
-         this.preReq.services[sort] = ''
-         $(`#${sort} input:nth-of-type(2)`).val('')
-         $(`#${sort} input:nth-of-type(3)`).val('')
-
-      // console.log(this.req)
     },
 
-// ================================================
+// ================{ UNDO SERVICES }================
     undo(sort) {
       this.req.services[sort].pop()
       this.showImgs[sort].pop()
     },
 
-// =================================================
+// ================{ ADD DATE }================
     addDate() {
-      var obj = {
-        d: $('select:nth-of-type(1)').val(),
-        m: $('select:nth-of-type(2)').val(),
-        y: $('select:nth-of-type(3)').val()
-      }
-
-      const areAllFieldsFilledIn = Object.keys(obj).every(key => !!obj[key])
-      if (!areAllFieldsFilledIn) {
-        this.error = 'please fill the inputs correctly!!' //will show as notification
-        alert(this.error)
-        return
-      }
-
-      this.req.services.dates.push(obj)
+      var date = $('input[type="date"]').val()
+      if (date == '') {return}
+      this.req.dates.push(date)
     },
 
-    // ===============================
+// ================{ UNDO DATE }================
     undoDate() {
-      this.req.services.dates.pop()
+      this.req.dates.pop()
     },
 
-// ==================================================
+// ================{ SHOW MAIN IMGS }================
 async showMainIMGS(e) {
       this.preReq.info.imgSelected = []
       this.showImgs.mainIMGS = []
@@ -444,9 +427,9 @@ async showMainIMGS(e) {
       }
     },
 
-//====================================================
+// ================{ SHOW SERVICES IMGS }================
 async showServiceIMG(e, sort) {
-    this.showImgs.test = null
+    this.showImgs.selectedIMG = null
     var file = await e.target.files
     console.log(file)
     this.preReq.services[sort] = file
@@ -455,12 +438,12 @@ async showServiceIMG(e, sort) {
     var picReader = new FileReader()
     picReader.onload = (event) => {
       var picFile = event.target
-      this.showImgs.test = picFile.result
+      this.showImgs.selectedIMG = picFile.result
     }
       picReader.readAsDataURL(file[0])
   },
 
-// =====================================================
+// ================{ SAVE MAIN IMGS }================
   async saveMainIMGS() {
     const fd = new FormData()
     for (let i = 0; i < this.preReq.info.numOfFiles; i++) {
@@ -473,7 +456,7 @@ async showServiceIMG(e, sort) {
     })
   },
 
-// ====================================================
+// ================{ SAVE SERVICES IMGS }================
 async saveServicesIMGS() {
   Object.keys(this.req.services).map(async (key) => {
     const fd = new FormData()
@@ -486,7 +469,7 @@ async saveServicesIMGS() {
     res.map((img) => {
       this.req.services[key].forEach((single) => {
         if (single.imgID[0].name == img.originalname) {
-          single.imgID = img.filename
+         single.imgID = img.filename
         }
       })
     })
@@ -494,60 +477,47 @@ async saveServicesIMGS() {
   })
 },
 
+// ================{ GET ALL IMAGES NAME IN DB }================
+async saveAllImgs() {
+// DELETE EMPTY ARRAY IN SERVICES OBJ
+    Object.keys(this.req.services).filter(key => {
+      if(this.req.services[key].length === 0) {
+        delete this.req.services[key]
+      }
+    })
 
-// =====================================================
+    try {
+  // SEND MAIN IMAGES TO BACK-END
+        await this.saveMainIMGS()
+
+  // SAVE SERVICES IMAGES TO BACK-END
+        await this.saveServicesIMGS()
+        console.log('done')
+
+    } catch (error) {
+      console.log(error)
+      console.log(error.response)
+    }
+  },
+
+// ================{ SEND REQ }================
 async sendReq() {
-// CHECK INFO FIELDS IN REQ OBJ
+  // CHECK INFO FIELDS IN REQ OBJ
     const areAllFieldsFilledIn = Object.keys(this.req.info).every(key => !!this.req.info[key])
     if (!areAllFieldsFilledIn) {
       console.log('fill all the require fields')
       return
     }
 
-// DELETE EMPTY ARRAY IN SERVICES OBJ
-      Object.keys(this.req.services).filter(key => {
-        if(this.req.services[key].length === 0) {
-          delete this.req.services[key]
-        }
-      })
-
       try {
+      // SEND ALL REQ TO BACK-END
+        let DataRes = (await MNGServices.addMember(this.req, 'MNG-Members')).data
 
-// SEND MAIN IMAGES TO BACK-END
-      this.saveMainIMGS()
-
-// SAVE SERVICES IMAGES TO BACK-END
-      this.saveServicesIMGS()
-
-// SEND ALL REQ TO BACK-END
-      console.log(this.req)
-
-
+        console.log(DataRes)
 
       } catch (error) {
         console.log(error.response)
       }
-    }
-  },
-  computed: {
-    calendar() {
-      var date = {
-        days: [],
-        months: [],
-        years: []
-      }
-
-      for(let d = 1; d < 32; d++) {
-        date.days.push(d)
-      }
-      for(let m = 1; m < 13; m++) {
-        date.months.push(m)
-      }
-      for(let y = 2018; y < 2040; y++) {
-        date.years.push(y)
-      }
-
-      return date
     }
   }
 }
@@ -556,7 +526,7 @@ async sendReq() {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 form {
-  width: 600px;
+  width: 550px;
   margin: 0 20px;
   float: left;
   padding: 10px;
@@ -564,7 +534,7 @@ form {
 }
 
 #showData {
-  width: 600px;
+  width: 550px;
   margin: 0 20px;
   float: left;
   border: 2px solid #ddd;
