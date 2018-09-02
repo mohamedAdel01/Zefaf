@@ -31,6 +31,9 @@ import HoneymoonList from '@/components/MNG-Components/MNG-Lists/Honeymoon-List'
 import WeddingCarsList from '@/components/MNG-Components/MNG-Lists/WeddingCars-List'
 import InvitationCardsList from '@/components/MNG-Components/MNG-Lists/InvitationCards-List'
 import PhotographersList from '@/components/MNG-Components/MNG-Lists/Photographers-List'
+import FlowersList from '@/components/MNG-Components/MNG-Lists/Flowers-List'
+import WeddingSuitsList from '@/components/MNG-Components/MNG-Lists/WeddingSuits-List'
+import WeddingDressList from '@/components/MNG-Components/MNG-Lists/WeddingDress-List'
 
 
 
@@ -167,6 +170,21 @@ export default new Router({
           path: '/mng/management/photographers',
           name: 'PhotographersList',
           component: PhotographersList
+        },
+        {
+          path: '/mng/management/flowers',
+          name: 'FlowersList',
+          component: FlowersList
+        },
+        {
+          path: '/mng/management/weddingsuits',
+          name: 'WeddingSuitsList',
+          component: WeddingSuitsList
+        },
+        {
+          path: '/mng/management/weddingdress',
+          name: 'WeddingDressList',
+          component: WeddingDressList
         }
       ]
     },
