@@ -1,7 +1,7 @@
 <template>
   <div style="height:1000px">
     <h1 class="mx-auto mt-2" style="width: 600px">Flowers list page content</h1><hr/>
-    <form @submit="sendReq()">
+    <form @submit.prevent="sendReq()">
       <h4>main info</h4>
       <section id="main-info">
         <input class="form-control" type="text" placeholder="name" v-model="req.info.name"/>
@@ -47,7 +47,8 @@ import MNGServices from '../../../services/MNG-Services'
 export default {
   data () {
     return {
-       showImgs: {
+      Token: null,
+      showImgs: {
         selectedIMG: null,
         Bouquet: []
       },
@@ -146,8 +147,7 @@ async saveServicesIMGS() {
         for (let i = 0; i < this.req.services[key].length; i++) {
           fd.append('imagesfile', this.req.services[key][i].imgID[0])
         }
-        let res = (await MNGServices.saveImages(fd, 'Flowers', key)).data
-
+        let res = (await MNGServices.saveImages(fd, 'Flowers', key, this.Token)).data
         res.map((img) => {
           this.req.services[key].forEach((single) => {
             if (single.imgID[0].name == img.originalname) {
@@ -171,7 +171,7 @@ async sendReq() {
 
       try {
       // SEND ALL REQ TO BACK-END
-        let DataRes = (await MNGServices.addMember(this.req, 'MNG-InvitationCards-Member')).data
+        let DataRes = (await MNGServices.addMember(this.req, 'MNG-InvitationCards-Member', this.Token)).data
 
         console.log(DataRes)
 
@@ -180,7 +180,10 @@ async sendReq() {
       }
     }
 
-  }
+  },
+    mounted() {
+      this.Token = this.$store.state.MNG.token
+    }
 }
 </script>
 

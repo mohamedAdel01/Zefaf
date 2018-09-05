@@ -1,7 +1,7 @@
 <template>
   <div style="height:3000px">
     <h1 class="mx-auto mt-2" style="width: 600px">wedding halls list page content</h1><hr/>
-    <form @submit="sendReq">
+    <form @submit.prevent="sendReq">
 
 <!-- ===================== { MAIN-INFO } ======================== -->
       <section id="main-info">
@@ -271,6 +271,7 @@ import MNGServices from '../../../services/MNG-Services'
 export default {
   data () {
     return {
+      Token: null,
       showImgs: {
         selectedIMG: null,
         mainIMGS: [],
@@ -449,7 +450,7 @@ async showServiceIMG(e, sort) {
     for (let i = 0; i < this.preReq.info.numOfFiles; i++) {
       fd.append('imagesfile', this.preReq.info.imgSelected[0][i])
     }
-    let res = (await MNGServices.saveImages(fd, 'weddingHalls', 'main')).data
+    let res = (await MNGServices.saveImages(fd, 'weddingHalls', 'main', this.Token)).data
     // console.log(res)
     res.map((img) => {
       this.req.info.ImgsName.push(img.filename)
@@ -464,7 +465,7 @@ async saveServicesIMGS() {
     for (let i = 0; i < this.req.services[key].length; i++) {
       fd.append('imagesfile', this.req.services[key][i].imgID[0])
     }
-    let res = (await MNGServices.saveImages(fd, 'weddingHalls', key)).data
+    let res = (await MNGServices.saveImages(fd, 'weddingHalls', key, this.Token)).data
 
     res.map((img) => {
       this.req.services[key].forEach((single) => {
@@ -511,7 +512,7 @@ async sendReq() {
 
       try {
       // SEND ALL REQ TO BACK-END
-        let DataRes = (await MNGServices.addMember(this.req, 'MNG-WeddingHalls-Member')).data
+        let DataRes = (await MNGServices.addMember(this.req, 'MNG-WeddingHalls-Member', this.Token)).data
 
         console.log(DataRes)
 
@@ -519,7 +520,11 @@ async sendReq() {
         console.log(error.response)
       }
     }
-  }
+
+  },
+    mounted() {
+      this.Token = this.$store.state.MNG.token
+    }
 }
 </script>
 

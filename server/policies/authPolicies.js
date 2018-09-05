@@ -1,5 +1,4 @@
-// this for validation for register informations
-
+const jwt = require('jsonwebtoken')
 const Joi = require('joi')
 
 module.exports = {
@@ -27,5 +26,14 @@ module.exports = {
         } else {
             next()
         }
+    },
+    async isAuthenticated(req,res,next) {
+        var Token = await req.headers['authorization']
+        jwt.verify(Token, 'mohamedsecret', (err, decoded) => {
+            if (err) {
+                res.send('forbiden')
+            }
+        })
+        next()
     }
 }

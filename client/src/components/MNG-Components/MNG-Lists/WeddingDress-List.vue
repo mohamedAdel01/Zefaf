@@ -1,7 +1,7 @@
 <template>
   <div style="height:1000px">
     <h1 class="mx-auto mt-2" style="width: 600px">Wedding Dress list page content</h1><hr/>
-    <form @submit="sendReq()">
+    <form @submit.prevent="sendReq()">
       <h4>main info</h4>
       <section id="main-info">
         <input class="form-control" type="text" placeholder="name" v-model="req.info.name"/>
@@ -72,6 +72,7 @@ import MNGServices from '../../../services/MNG-Services'
 export default {
   data () {
     return {
+      Token: null,
       colors: ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Azure","Beige","Bisque","Black","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen","Darkorange","DarkOrchid","DarkRed","DarkSalmon","DarkSeaGreen","DarkSlateBlue","DarkSlateGray","DarkSlateGrey","DarkTurquoise","DarkViolet","DeepPink","DeepSkyBlue","DimGray","DimGrey","DodgerBlue","FireBrick","FloralWhite","ForestGreen","Fuchsia","Gainsboro","GhostWhite","Gold","GoldenRod","Gray","Grey","Green","GreenYellow","HoneyDew","HotPink","IndianRed","Indigo","Ivory","Khaki","Lavender","LavenderBlush","LawnGreen","LemonChiffon","LightBlue","LightCoral","LightCyan","LightGoldenRodYellow","LightGray","LightGrey","LightGreen","LightPink","LightSalmon","LightSeaGreen","LightSkyBlue","LightSlateGray","LightSlateGrey","LightSteelBlue","LightYellow","Lime","LimeGreen","Linen","Magenta","Maroon","MediumAquaMarine","MediumBlue","MediumOrchid","MediumPurple","MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MidnightBlue","MintCream","MistyRose","Moccasin","NavajoWhite","Navy","OldLace","Olive","OliveDrab","Orange","OrangeRed","Orchid","PaleGoldenRod","PaleGreen","PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum","PowderBlue","Purple","Red","RosyBrown","RoyalBlue","SaddleBrown","Salmon","SandyBrown","SeaGreen","SeaShell","Sienna","Silver","SkyBlue","SlateBlue","SlateGray","SlateGrey","Snow","SpringGreen","SteelBlue","Tan","Teal","Thistle","Tomato","Turquoise","Violet","Wheat","White","WhiteSmoke","Yellow","YellowGreen"],
       pickedColor: [],
       showImgs: {
@@ -221,7 +222,7 @@ async saveServicesIMGS() {
         for (let i = 0; i < this.req.services[key].length; i++) {
           fd.append('imagesfile', this.req.services[key][i].imgID[0])
         }
-        let res = (await MNGServices.saveImages(fd, 'Dress', key)).data
+        let res = (await MNGServices.saveImages(fd, 'Dress', key, this.Token)).data
 
         res.map((img) => {
           this.req.services[key].forEach((single) => {
@@ -246,7 +247,7 @@ async sendReq() {
 
       try {
       // SEND ALL REQ TO BACK-END
-        let DataRes = (await MNGServices.addMember(this.req, 'MNG-Dress-Member')).data
+        let DataRes = (await MNGServices.addMember(this.req, 'MNG-Dress-Member', this.Token)).data
 
         console.log(DataRes)
 
@@ -255,7 +256,10 @@ async sendReq() {
       }
     }
 
-  }
+  },
+    mounted() {
+      this.Token = this.$store.state.MNG.token
+    }
 }
 </script>
 

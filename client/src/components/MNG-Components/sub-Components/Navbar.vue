@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar bg-light navbar-light">
-    <a class="navbar-brand" @click="navigateTo('/')">ZeFaF App</a>
+    <a class="navbar-brand" @click="navigateTo('/')">ZeFaF Mangement</a>
     <ul class="navbar-nav d-inline">
       <li class="nav-item nav-link d-inline" @click="logout">logout</li>
     </ul>

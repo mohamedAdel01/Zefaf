@@ -16,7 +16,7 @@ const IMGControlles = require('../../controlles/IMG-Controlles')
   router.post('/MNG/login', MNGAuthControlles.MNGLogin)
 
   // ADD MEMBERS
-  router.post('/MNG/addMember/:model', MNGDataControlles.addMember)
+  router.post('/MNG/addMember/:model', authPolices.isAuthenticated, MNGDataControlles.addMember)
 
 // MNG ROUTING {GET} REQ
   router.get('/MNG/getservicesitems',  MNGDataControlles.getServicesItems)
@@ -29,6 +29,6 @@ const IMGControlles = require('../../controlles/IMG-Controlles')
   router.get('/details/:sort', dataControlls.show)
 
 // ROUTING FOR IMAGES 
-  router.post('/saveImages/:folder/:sub', IMGControlles.SaveImgs)
+  router.post('/saveImages/:folder/:sub', authPolices.isAuthenticated ,IMGControlles.SaveImgs)
 
 module.exports = router

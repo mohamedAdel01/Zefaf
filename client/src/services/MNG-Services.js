@@ -9,11 +9,15 @@ export default {
     return Api().get('MNG/getservicesitems')
   },
 
-  saveImages(req, folder, sub) {
-    return Api().post(`/saveImages/${folder}/${sub}`, req)
+  saveImages(req, folder, sub, Token) {
+    return Api().post(`/saveImages/${folder}/${sub}`, req, {
+      headers: {authorization: Token}
+    })
   },
 
-  addMember(req , model) {
-    return Api().post(`/MNG/addMember/${model}`, req)
+  addMember(req , model, Token) {
+    return Api().post(`/MNG/addMember/${model}`, req, {
+      headers: {authorization: Token}
+    })
   }
 }
