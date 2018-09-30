@@ -1,3 +1,4 @@
+// this page may be delete after
 const weddingData = require('../models/weddingData')
 
 module.exports = {

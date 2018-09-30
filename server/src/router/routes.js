@@ -6,10 +6,13 @@ const dataControlls = require('../../controlles/dataControlls')
 const MNGAuthControlles = require('../../controlles/MNG-Auth-Controlles')
 const MNGDataControlles = require('../../controlles/MNG-Data-Controlles')
 const IMGControlles = require('../../controlles/IMG-Controlles')
+const NuserControlles = require('../../controlles/Nuser-Controlles')
 
 
 // ---------------------------{ ROUTING }-----------------------------------
-
+router.get('/', function(req,res) {
+  res.send('hello mohamed')
+})
 // MNG ROUTING {POST} REQ
   // AUTH
   router.post('/MNG/adduser', authPolices.register, MNGAuthControlles.MNGAddUser)
@@ -27,8 +30,10 @@ const IMGControlles = require('../../controlles/IMG-Controlles')
   
 // WEDDING COMPONENTS ROUTING
   router.get('/details/:sort', dataControlls.show)
+  router.get('/Nuser/:governorate', NuserControlles.getWeddingHalls)
 
 // ROUTING FOR IMAGES 
   router.post('/saveImages/:folder/:sub', authPolices.isAuthenticated ,IMGControlles.SaveImgs)
+  
 
 module.exports = router

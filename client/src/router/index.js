@@ -122,7 +122,7 @@ export default new Router({
       component: WeddingMusic
     },
     {
-      path: '/details',
+      path: '/details/:id',
       name: 'Details',
       component: Details
     },

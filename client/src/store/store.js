@@ -12,6 +12,9 @@ export const store = new Vuex.Store({
       user: null,
       token: null,
       isUserLoggedIn: false
+    },
+    Nuser: {
+      CachData: []
     }
   },
 

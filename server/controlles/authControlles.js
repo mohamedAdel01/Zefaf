@@ -1,5 +1,3 @@
-// this to controll with data from FRONT-END
-
 var bcrypt = require('bcrypt')
 var jwt = require('jsonwebtoken')
 const saltRounds = 10

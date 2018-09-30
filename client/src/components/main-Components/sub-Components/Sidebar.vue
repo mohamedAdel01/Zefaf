@@ -1,3 +1,4 @@
+<!--THIS PAGE MAYBE DELETED AFTER-->
 <template>
   <aside class="sidenav">
     <li @click="navigateTo('/accessories')">Accessories</li>
