@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const authPolices = require('../../policies/authPolicies')
-const authcontrolles = require('../../controlles/authcontrolles')
+// const authcontrolles = require('../../controlles/authcontrolles')
 const dataControlls = require('../../controlles/dataControlls')
-const MNGAuthControlles = require('../../controlles/MNG-Auth-Controlles')
+// const MNGAuthControlles = require('../../controlles/MNG-Auth-Controlles')
 const MNGDataControlles = require('../../controlles/MNG-Data-Controlles')
 const IMGControlles = require('../../controlles/IMG-Controlles')
 const NuserControlles = require('../../controlles/Nuser-Controlles')
@@ -19,7 +19,7 @@ router.get('/', function(req,res) {
   router.post('/MNG/login', MNGAuthControlles.MNGLogin)
 
   // ADD MEMBERS
-  router.post('/MNG/addMember/:model', authPolices.isAuthenticated, MNGDataControlles.addMember)
+  router.post('/MNG/addMember/:model', MNGDataControlles.addMember)
 
 // MNG ROUTING {GET} REQ
   router.get('/MNG/getservicesitems',  MNGDataControlles.getServicesItems)
@@ -33,7 +33,7 @@ router.get('/', function(req,res) {
   router.get('/Nuser/:governorate', NuserControlles.getWeddingHalls)
 
 // ROUTING FOR IMAGES 
-  router.post('/saveImages/:folder/:sub', authPolices.isAuthenticated ,IMGControlles.SaveImgs)
+  router.post('/saveImages/:folder/:sub' ,IMGControlles.SaveImgs)
   
 
 module.exports = router

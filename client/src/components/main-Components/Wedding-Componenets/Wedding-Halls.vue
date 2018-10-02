@@ -10,7 +10,7 @@
 
     <section id="halls">
       <div class="card mt-4" style="width: 18rem;" v-for="doc in res.weddingHalls" :key="doc._id" @click="slctItem(doc)">
-        <img class="card-img-top" style="height: 250px" :src="'http://localhost:5000/uploads/weddingHalls/main/' +  doc.info.ImgsName[0]" alt="Card image cap">
+        <img class="card-img-top" style="height: 250px" :src="'https://mk-zefaf.herokuapp.com/uploads/weddingHalls/main/' +  doc.info.ImgsName[0]" alt="Card image cap">
           <h5 class="ml-2 mt-1">{{ doc.info.name }}</h5>
           <h6 class="ml-2 mt-1">{{ doc.info.address }}</h6>
       </div>

@@ -10,7 +10,7 @@
 <!-- this will shown as a slider AFTER -->
     <p class="text-center">{{ data.info.detail }}</p>
     <div id="carousel" v-for="img in data.info.ImgsName" :key="img">
-      <img :src="'http://localhost:5000/uploads/weddingHalls/main/' + img" alt="Wedding Halls">
+      <img :src="'https://mk-zefaf.herokuapp.com/uploads/weddingHalls/main/' + img" alt="Wedding Halls">
     </div>
     <div class="clearfix"></div>
     <div id="selections" class="jumbotron">
@@ -25,7 +25,7 @@
       <div class="mb-2">
         <h3>choose DJ</h3>
         <div class="card mt-4" style="width: 18rem;" v-for="doc in data.services.Dj" :key="doc._id" @click="slctItem(doc)">
-          <img class="card-img-top" style="height: 250px" :src="'http://localhost:5000/uploads/weddingHalls/Dj/' +  doc.imgID" alt="Card image cap">
+          <img class="card-img-top" style="height: 250px" :src="'https://mk-zefaf.herokuapp.com/uploads/weddingHalls/Dj/' +  doc.imgID" alt="Card image cap">
           <h5 class="ml-2 mt-1">{{ doc.name }}</h5>
           <h6 class="ml-2 mt-1">{{ doc.price }}</h6>
         </div>
@@ -34,7 +34,7 @@
       <div class="mb-2">
         <h3>choose DJ</h3>
         <div class="card mt-4" style="width: 18rem;" v-for="doc in data.services.Dj" :key="doc._id" @click="slctItem(doc)">
-          <img class="card-img-top" style="height: 250px" :src="'http://localhost:5000/uploads/weddingHalls/Dj/' +  doc.imgID" alt="Card image cap">
+          <img class="card-img-top" style="height: 250px" :src="'https://mk-zefaf.herokuapp.com/uploads/weddingHalls/Dj/' +  doc.imgID" alt="Card image cap">
           <h5 class="ml-2 mt-1">{{ doc.name }}</h5>
           <h6 class="ml-2 mt-1">{{ doc.price }}</h6>
         </div>
