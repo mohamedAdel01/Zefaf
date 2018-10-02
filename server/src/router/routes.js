@@ -15,8 +15,8 @@ router.get('/', function(req,res) {
 })
 // MNG ROUTING {POST} REQ
   // AUTH
-  router.post('/MNG/adduser', authPolices.register, MNGAuthControlles.MNGAddUser)
-  router.post('/MNG/login', MNGAuthControlles.MNGLogin)
+  // router.post('/MNG/adduser', authPolices.register, MNGAuthControlles.MNGAddUser)
+  // router.post('/MNG/login', MNGAuthControlles.MNGLogin)
 
   // ADD MEMBERS
   router.post('/MNG/addMember/:model', MNGDataControlles.addMember)
@@ -25,8 +25,8 @@ router.get('/', function(req,res) {
   router.get('/MNG/getservicesitems',  MNGDataControlles.getServicesItems)
 
 // AUTHENTICATION ROUTING
-  router.post('/register', authPolices.register, authcontrolles.register)
-  router.post('/login', authcontrolles.login)
+  // router.post('/register', authPolices.register, authcontrolles.register)
+  // router.post('/login', authcontrolles.login)
   
 // WEDDING COMPONENTS ROUTING
   router.get('/details/:sort', dataControlls.show)
