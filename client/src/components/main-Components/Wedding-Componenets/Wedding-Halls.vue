@@ -56,9 +56,10 @@ export default {
     },
 
     slctItem(item) {
-      this.$store.state.Nuser.CachData = item
+      this.$store.dispatch('CachData', item)
+      // this.$store.state.Nuser.CachData = item
       console.log(this.$store.state.Nuser.CachData)
-      this.navigateTo({name:'Details', params: {id: item._id}})
+      this.navigateTo({path:'/details/:id', params: {id: item._id}})
     }
 
   }

@@ -32,6 +32,11 @@ export const store = new Vuex.Store({
       this.state.MNG.token = null
       this.state.MNG.isUserLoggedIn = false
       console.log('logout');
+    },
+
+    CachData(state, item) {
+      this.state.Nuser.CachData = item
+      console.log('save CachData')
     }
   },
 
@@ -42,6 +47,10 @@ export const store = new Vuex.Store({
 
     MNGLogout({commit}) {
       commit('MNGLogout')
+    },
+
+    CachData({commit}, item) {
+      commit('CachData', item)
     }
   }
 })
