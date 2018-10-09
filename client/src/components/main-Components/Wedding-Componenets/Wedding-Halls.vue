@@ -3,7 +3,7 @@
     <app-navbar></app-navbar>
     <h3>Wedding Halls</h3> <hr/>
     <section id="search">
-      <input class="mr-2 ml-2" style="width:50%" type="text" placeholder="governorate" v-model="req.governorate">
+      <input class="mr-2 ml-2" style="width:50%" type="text" placeholder="governorate" v-model="req.governorate" @keyup.enter="search">
       <!-- <input class="mr-2" type="text" placeholder="sort" v-model="sort"> ## we will add it after -->
       <button @click="search" class="btn btn-info">search</button>
     </section> <hr/>
@@ -57,7 +57,6 @@ export default {
 
     slctItem(item) {
       this.$store.dispatch('CachData', item)
-      // this.$store.state.Nuser.CachData = item
       console.log(this.$store.state.Nuser.CachData)
       this.navigateTo({path:'/details/:id', params: {id: item._id}})
     }
@@ -87,5 +86,15 @@ h5{
 
 #halls div:hover{
   opacity: .8;
+}
+
+.card{
+  float: left;
+  margin-right: 20px
+}
+
+.card:hover{
+  opacity: 0.7;
+  box-shadow: 10px 10px 10px #888
 }
 </style>

@@ -10,9 +10,6 @@ const NuserControlles = require('../../controlles/Nuser-Controlles')
 
 
 // ---------------------------{ ROUTING }-----------------------------------
-router.get('/', function(req,res) {
-  res.send('hello mohamed')
-})
 // MNG ROUTING {POST} REQ
   // AUTH
   router.post('/MNG/adduser', authPolices.register, MNGAuthControlles.MNGAddUser)

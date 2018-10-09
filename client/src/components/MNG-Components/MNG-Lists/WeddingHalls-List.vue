@@ -466,7 +466,6 @@ async saveServicesIMGS() {
       fd.append('imagesfile', this.req.services[key][i].imgID[0])
     }
     let res = (await MNGServices.saveImages(fd, 'weddingHalls', key, this.Token)).data
-
     res.map((img) => {
       this.req.services[key].forEach((single) => {
         if (single.imgID[0].name == img.originalname) {

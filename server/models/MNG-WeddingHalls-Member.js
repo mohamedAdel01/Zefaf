@@ -18,70 +18,80 @@ const weddingHallsMemberSchema = new schema({
             {
                 name: String,
                 price: Number,
-                imgID: String
+                imgID: String,
+                Q: {type: Number, default: 0}
             }
         ],
         Dj: [
             {
                 name: String,
                 price: Number,
-                imgID: String
+                imgID: String,
+                Q: {type: Number, default: 0}
             }
         ],
         flint: [
             {
                 name: String,
                 price: Number,
-                imgID: String
+                imgID: String,
+                Q: {type: String, default: "empty"}
             }
         ],
         videoTeam: [
             {
                 name: String,
                 price: Number,
-                imgID: String
+                imgID: String,
+                Q: {type: Number, default: 0}
             }
         ],
         chairs: [
             {
                 name: String,
                 price: Number,
-                imgID: String
+                imgID: String,
+                Q: {type: Number, default: 0}
             }
         ],
         tables: [
             {
                 name: String,
                 price: Number,
-                imgID: String
+                imgID: String,
+                Q: {type: Number, default: 0}
             }
         ],
         shows: [
             {
                 name: String,
                 price: Number,
-                imgID: String
+                imgID: String,
+                Q: {type: Number, default: 0}
             }
         ],
         drinks: [
             {
                 name: String,
                 price: Number,
-                imgID: String
+                imgID: String,
+                Q: {type: Number, default: 0}
             }
         ],
         buffet: [
             {
                 name: String,
                 price: Number,
-                imgID: String
+                imgID: String,
+                Q: {type: Number, default: 0}
             }
         ],
         setMenu: [
             {
                 name: String,
                 price: Number,
-                imgID: String
+                imgID: String,
+                Q: {type: Number, default: 0}
             }
         ]
     },
