@@ -35,7 +35,7 @@ const weddingHallsMemberSchema = new schema({
                 name: String,
                 price: Number,
                 imgID: String,
-                Q: {type: String, default: "empty"}
+                Q: {type: String, default: 1}
             }
         ],
         videoTeam: [

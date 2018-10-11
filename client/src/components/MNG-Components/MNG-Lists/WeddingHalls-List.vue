@@ -30,19 +30,19 @@
       <section class="sub-services">
         <h4>services-prices</h4>
 
-      <!-- ===== { songer } ===== -->
+      <!-- ===== { singer } ===== -->
 
         <div class="service-prices">
-          <h5 class="mr-5">songer:</h5>
-          <input type="checkbox" v-model="visibility.songer">
-          <label for="checkbox">available: {{ visibility.songer }}</label><br/>
+          <h5 class="mr-5">singer:</h5>
+          <input type="checkbox" v-model="visibility.singer">
+          <label for="checkbox">available: {{ visibility.singer }}</label><br/>
 
-          <div v-if="visibility.songer" class="service-options" id="songer">
-            <span>image: </span><input type="file" @change="showServiceIMG($event, 'songer')"/><br/>
+          <div v-if="visibility.singer" class="service-options" id="singer">
+            <span>image: </span><input type="file" @change="showServiceIMG($event, 'singer')"/><br/>
             <span>name: </span><input class="form-control" type="text"/><br/>
             <span>price: </span><input class="form-control" type="number"/><br/>
-            <button @click.prevent="add('songer')">add</button>
-            <button @click.prevent="undo('songer')">undo</button>
+            <button @click.prevent="add('singer')">add</button>
+            <button @click.prevent="undo('singer')">undo</button>
           </div>
         </div><hr/>
 
@@ -208,9 +208,9 @@
     <div id="showData">
       <h4>the existed services</h4><hr/>
       <div class="collection">
-        <h5>songer</h5>
-        <div class="">{{req.services.songer}}</div>
-        <img :src="img" v-for="(img, index) in showImgs.songer" :key="index"/>
+        <h5>singer</h5>
+        <div class="">{{req.services.singer}}</div>
+        <img :src="img" v-for="(img, index) in showImgs.singer" :key="index"/>
       </div>
       <div class="collection">
         <h5>Dj</h5>
@@ -275,7 +275,7 @@ export default {
       showImgs: {
         selectedIMG: null,
         mainIMGS: [],
-        songer: [],
+        singer: [],
         Dj: [],
         flint: [],
         videoTeam: [],
@@ -295,7 +295,7 @@ export default {
           numOfFiles: null
         },
         services: {
-          songer: '',
+          singer: '',
           Dj: '',
           flint: '',
           videoTeam: '',
@@ -310,7 +310,7 @@ export default {
 
 // =================={ VISIBILITY }========================
       visibility: {
-        songer: false,
+        singer: false,
         Dj: false,
         flint: false,
         videoTeam: false,
@@ -336,7 +336,7 @@ export default {
           ImgsName: []
         },
         services: {
-          songer: [],
+          singer: [],
           Dj: [],
           flint: [],
           videoTeam: [],

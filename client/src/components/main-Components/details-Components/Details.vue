@@ -31,8 +31,8 @@
               <img class="card-img-top" style="height: 250px" :src="'http://localhost:5000/uploads/weddingHalls/'+ key + '/' +  value.imgID" alt="Card image cap">
               <h5 class="ml-2 mt-1">{{ value.name }}</h5>
               <h6 class="ml-2 mt-1">Price: {{ value.price }}</h6>
-                <label v-if="value.Q != 'empty'">quantity OR hours</label>
-                <input v-if="value.Q != 'empty'" class="form-control" type="number" v-model="value.Q"/>
+                <label v-if="key != 'flint'">quantity OR hours</label>
+                <input v-if="key != 'flint'" class="form-control" type="number" v-model="value.Q"/>
               <button class="btn btn-success" @click="slctItem(key, value)">Add Item</button>
             </div>
             <div class="clearfix"></div><hr />
@@ -51,22 +51,25 @@
               <th>name</th>
               <th>price</th>
               <th>quantity</th>
+              <th>total</th>
+              <th>options</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr v-for="value in values" :key="value._id">
+            <tr v-for="(value, index) in values" :key="value._id">
               <th>{{ value.name }}</th>
               <th>{{ value.price }}</th>
               <th>{{ value.Q }}</th>
+              <th>{{ value.Q * value.price}}</th>
+              <th>
+                <button class="btn btn-info" @click="value.Q++" v-if="key != 'flint'">+</button>
+                <button class="btn btn-info" @click="value.Q--" v-if="key != 'flint'" :disabled="value.Q < 2">-</button>
+                <button class="btn btn-info" @click="DltItem(key, value, index)">X</button>
+              </th>
             </tr>
           </tbody>
         </table>
-        <!-- <div v-for="(values, key) in checkList" :key="key">
-          <div v-for="value in values" >
-            {{value.name}}
-          </div>
-        </div> -->
       </div>
     </div>
 
@@ -84,14 +87,13 @@ export default {
   data () {
     return {
       checkList: {
-        priceRent: null,
         Dj: null,
         flint: null,
-        tables: null,
-        chairs: null,
         videoTeam: null,
+        tables: [],
+        chairs: [],
         shows: [],
-        songer: [],
+        singer: [],
         buffet: [],
         setMenu: [],
         drinks: []
@@ -102,9 +104,9 @@ export default {
     }
   },
   methods: {
-    slctItem(key,item) {
-      if(item.Q == 0) {
-        console.log('fill the quantity')
+    slctItem(key,value) {
+      if(value.Q == 0 || value.Q < 0 || value.Q == '') {
+        console.log('fill the quantity correctly')
         return
       }
 
@@ -112,16 +114,28 @@ export default {
       switch (key) {
         case 'Dj':
         case 'flint':
-        case 'tables':
-        case 'chairs':
         case 'videoTeam':
-            this.checkList[key] = [item]
+            this.checkList[key] = [value]
           break;
 
         default:
-            this.checkList[key].push(item)
+          var check = true
+          this.checkList[key].filter((item) => {
+            if(item._id == value._id) {
+              check = false
+              alert('this item is choosen before \nif you need to change quantity go to chickList')
+            }
+          })
+          console.log(check)
+          if(check) {
+            this.checkList[key].push(value)
+          }
           break;
       }
+      // console.log(this.checkList[key])
+    },
+    DltItem(key, value, index) {
+      this.checkList[key].splice(index, 1)
       console.log(this.checkList)
     }
   },
@@ -170,9 +184,8 @@ h4 span{
 
 }
 
-.btn:hover{
-  opacity: 0.8;
-  box-shadow: 10px 10px 10px #888
+.btn-success:hover{
+  box-shadow: 7px 7px 5px #888
 }
 
 #checkList {
@@ -181,12 +194,15 @@ h4 span{
   min-height: 200%;
   top: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   color: white
 }
 
 #checkList .close{
-  color: red;
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: skyblue;
   font-size: 50px;
 }
 
