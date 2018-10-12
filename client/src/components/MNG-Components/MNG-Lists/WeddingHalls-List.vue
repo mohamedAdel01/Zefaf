@@ -7,6 +7,7 @@
       <section id="main-info">
         <h4>main-info</h4>
         <input class="form-control" type="text" placeholder="name" v-model="req.info.name"/>
+        <input class="form-control" type="email" placeholder="email" v-model="req.info.email"/>
         <input class="form-control" type="text" placeholder="governorate" v-model="req.info.governorate"/>
         <input class="form-control" type="text" placeholder="city" v-model="req.info.city"/>
         <input class="form-control" type="text" placeholder="address" v-model="req.info.address"/>
@@ -326,6 +327,7 @@ export default {
       req: {
         info: {
           name: null,
+          email: null,
           governorate: null,
           city: null,
           address: null,

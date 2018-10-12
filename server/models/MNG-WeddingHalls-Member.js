@@ -4,6 +4,7 @@ const schema = mongoose.Schema
 const weddingHallsMemberSchema = new schema({
     info: {
         name: String,
+        email: String,
         governorate: String,
         city: String,
         address: String,

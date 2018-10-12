@@ -6,6 +6,7 @@
       <h3 class="text-center">Welcome in <span>{{ nestedItem.info.name }}</span></h3>
       <h4>address: <span>{{ nestedItem.info.address }}</span></h4>
       <button class="btn btn-info fixed" @click="showCheckList=!showCheckList">checkList</button>
+      <h3 class="text-center fixed" v-if="!showCheckList">{{ calcTotal }}</h3>
     </div>
 
 <!-- this will shown as a slider AFTER && and try to make this page render for all the our service-->
@@ -71,6 +72,9 @@
           </tbody>
         </table>
       </div>
+        <h4>total price is:</h4>
+        <input style="width: 50%" class="form-control" :value="calcTotal" type="number"  readonly/><br/>
+        <button class="btn btn-success btn-lg mb-3">add to my Bag</button>
     </div>
 
   </section>
@@ -87,9 +91,9 @@ export default {
   data () {
     return {
       checkList: {
-        Dj: null,
-        flint: null,
-        videoTeam: null,
+        Dj: [],
+        flint: [],
+        videoTeam: [],
         tables: [],
         chairs: [],
         shows: [],
@@ -137,6 +141,22 @@ export default {
     DltItem(key, value, index) {
       this.checkList[key].splice(index, 1)
       console.log(this.checkList)
+    }
+  },
+  computed: {
+    calcTotal () {
+      var total = this.nestedItem.info.priceRent
+      Object.entries(this.checkList).map((items) => {
+        items.splice(0, 1)
+        items.map((item) => {
+          item.map((sub) => {
+            total += (sub.Q * sub.price)
+            console.log(sub.Q * sub.price)
+          })
+        })
+
+      })
+      return total
     }
   },
   async created() {
@@ -195,7 +215,7 @@ h4 span{
   top: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.8);
-  color: white
+  color: white;
 }
 
 #checkList .close{
@@ -214,5 +234,9 @@ h4 span{
   z-index: 1;
 }
 
+h3.fixed{
+  bottom: 6%;
+  border: 7px solid #aaa
+}
 
 </style>
