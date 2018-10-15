@@ -1,27 +1,27 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // MAIN COMPONENTS
-import Home from '@/components/main-Components/Home'
-import Register from '@/components/main-Components/Register'
-import Login from '@/components/main-Components/Login'
+import Home from '@/components/User-Components/Home'
+import Register from '@/components/User-Components/Register'
+import Login from '@/components/User-Components/Login'
 // APPLICATION COMPONENTS
-import Application from '@/components/app-Components/Application'
+import Application from '@/components/Clients-Components/Application'
 // WEDDING COMPONENTS
-import Accessories from '@/components/main-Components/Wedding-Componenets/Accessories'
-import Furniture from '@/components/main-Components/Wedding-Componenets/Furniture'
-import HairStyle from '@/components/main-Components/Wedding-Componenets/Hair-Style'
-import Honeymoon from '@/components/main-Components/Wedding-Componenets/Honeymoon'
-import Hotels from '@/components/main-Components/Wedding-Componenets/Hotels'
-import Photographers from '@/components/main-Components/Wedding-Componenets/Photographers'
-import WeddingCakes from '@/components/main-Components/Wedding-Componenets/Wedding-Cakes'
-import WeddingCars from '@/components/main-Components/Wedding-Componenets/Wedding-Cars'
-import WeddingClothes from '@/components/main-Components/Wedding-Componenets/Wedding-Clothes'
-import WeddingFlowers from '@/components/main-Components/Wedding-Componenets/Wedding-Flowers'
-import WeddingHalls from '@/components/main-Components/Wedding-Componenets/Wedding-Halls'
-import WeddingInvitations from '@/components/main-Components/Wedding-Componenets/Wedding-Invitations'
-import WeddingMusic from '@/components/main-Components/Wedding-Componenets/Wedding-Music'
+import Accessories from '@/components/User-Components/Wedding-Componenets/Accessories'
+import Furniture from '@/components/User-Components/Wedding-Componenets/Furniture'
+import HairStyle from '@/components/User-Components/Wedding-Componenets/Hair-Style'
+import Honeymoon from '@/components/User-Components/Wedding-Componenets/Honeymoon'
+import Hotels from '@/components/User-Components/Wedding-Componenets/Hotels'
+import Photographers from '@/components/User-Components/Wedding-Componenets/Photographers'
+import WeddingCakes from '@/components/User-Components/Wedding-Componenets/Wedding-Cakes'
+import WeddingCars from '@/components/User-Components/Wedding-Componenets/Wedding-Cars'
+import WeddingClothes from '@/components/User-Components/Wedding-Componenets/Wedding-Clothes'
+import WeddingFlowers from '@/components/User-Components/Wedding-Componenets/Wedding-Flowers'
+import WeddingHalls from '@/components/User-Components/Wedding-Componenets/Wedding-Halls'
+import WeddingInvitations from '@/components/User-Components/Wedding-Componenets/Wedding-Invitations'
+import WeddingMusic from '@/components/User-Components/Wedding-Componenets/Wedding-Music'
 // DETAILS COMPONENTS
-import Details from '@/components/main-Components/details-Components/Details'
+import Details from '@/components/User-Components/details-Components/Details'
 // MNG COMPONENTS
 import MNGlogin from '@/components/MNG-Components/MNGlogin'
 import Management from '@/components/MNG-Components/Management'
@@ -127,7 +127,7 @@ export default new Router({
       component: Details
     },
     {
-      path: '/app',
+      path: '/clients',
       name: 'Application',
       component: Application
     },

@@ -15,7 +15,7 @@ const weddingHallsMemberSchema = new schema({
         ImgsName: Array
     },
     services: {
-        songer: [
+        singer: [
             {
                 name: String,
                 price: Number,
