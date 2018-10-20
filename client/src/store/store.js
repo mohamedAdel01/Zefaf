@@ -13,6 +13,16 @@ export const store = new Vuex.Store({
       token: null,
       isUserLoggedIn: false
     },
+    Client: {
+      info: {
+        user: null,
+        token: null,
+        isUserLoggedIn: false
+      },
+      services: {
+        Weddinghalls: null
+      }
+    },
     Nuser: {
       CachData: []
     }
@@ -34,6 +44,21 @@ export const store = new Vuex.Store({
       console.log('logout');
     },
 
+    ClientsLogIn(state, UserData) {
+      this.state.Client.info.user = UserData.user.email
+      this.state.Client.info.token = UserData.token
+      this.state.Client.info.isUserLoggedIn = true
+      console.log('login');
+      console.log(this.state.Client);
+    },
+
+    ClientsLogout(state) {
+      this.state.Client.info.user = null
+      this.state.Client.info.token = null
+      this.state.Client.info.isUserLoggedIn = false
+      console.log('logout');
+    },
+
     CachData(state, item) {
       this.state.Nuser.CachData = item
       console.log('save CachData')
@@ -47,6 +72,14 @@ export const store = new Vuex.Store({
 
     MNGLogout({commit}) {
       commit('MNGLogout')
+    },
+
+    ClientsLogIn({commit}, UserData) {
+      commit('ClientsLogIn', UserData)
+    },
+
+    ClientsLogout({commit}) {
+      commit('ClientsLogout')
     },
 
     CachData({commit}, item) {

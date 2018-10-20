@@ -1,3 +1,5 @@
+// this may be deleted after
+
 import Api from '@/services/Api'
 
 export default {

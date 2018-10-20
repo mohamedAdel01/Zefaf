@@ -4,6 +4,8 @@ const authPolices = require('../../policies/authPolicies')
 const authcontrolles = require('../../controlles/authcontrolles')
 const dataControlls = require('../../controlles/dataControlls')
 const MNGAuthControlles = require('../../controlles/MNG-Auth-Controlles')
+const ClientsAuthControlles = require('../../controlles/Clients-Auth-Controlles')
+const ClientsDataControlles = require('../../controlles/Clients-Data-Controlles')
 const MNGDataControlles = require('../../controlles/MNG-Data-Controlles')
 const IMGControlles = require('../../controlles/IMG-Controlles')
 const NuserControlles = require('../../controlles/Nuser-Controlles')
@@ -20,6 +22,14 @@ const NuserControlles = require('../../controlles/Nuser-Controlles')
 
 // MNG ROUTING {GET} REQ
   router.get('/MNG/getservicesitems',  MNGDataControlles.getServicesItems)
+
+// CLIENTS ROUTING {POST} REQ
+  // AUTH
+  router.post('/clients/adduser', authPolices.register, ClientsAuthControlles.ClientsAddUser) // we will add authPolices after
+  router.post('/clients/login', ClientsAuthControlles.ClientsLogin)
+
+  // GET DATA
+  router.post('/clients/getdata', ClientsDataControlles.getData)
 
 // AUTHENTICATION ROUTING
   router.post('/register', authPolices.register, authcontrolles.register)

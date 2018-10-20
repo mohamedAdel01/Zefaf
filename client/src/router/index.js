@@ -4,8 +4,11 @@ import Router from 'vue-router'
 import Home from '@/components/User-Components/Home'
 import Register from '@/components/User-Components/Register'
 import Login from '@/components/User-Components/Login'
+
 // APPLICATION COMPONENTS
 import Application from '@/components/Clients-Components/Application'
+import ClientsLogin from '@/components/Clients-Components/Clients-Login'
+
 // WEDDING COMPONENTS
 import Accessories from '@/components/User-Components/Wedding-Componenets/Accessories'
 import Furniture from '@/components/User-Components/Wedding-Componenets/Furniture'
@@ -20,8 +23,10 @@ import WeddingFlowers from '@/components/User-Components/Wedding-Componenets/Wed
 import WeddingHalls from '@/components/User-Components/Wedding-Componenets/Wedding-Halls'
 import WeddingInvitations from '@/components/User-Components/Wedding-Componenets/Wedding-Invitations'
 import WeddingMusic from '@/components/User-Components/Wedding-Componenets/Wedding-Music'
+
 // DETAILS COMPONENTS
 import Details from '@/components/User-Components/details-Components/Details'
+
 // MNG COMPONENTS
 import MNGlogin from '@/components/MNG-Components/MNGlogin'
 import Management from '@/components/MNG-Components/Management'
@@ -127,9 +132,14 @@ export default new Router({
       component: Details
     },
     {
-      path: '/clients',
+      path: '/clients/application',
       name: 'Application',
       component: Application
+    },
+    {
+      path: '/clients/login',
+      name: 'ClientsLogin',
+      component: ClientsLogin
     },
     {
       path: '/mng/login',

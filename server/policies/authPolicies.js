@@ -27,6 +27,7 @@ module.exports = {
             next()
         }
     },
+    
     async isAuthenticated(req,res,next) {
         var Token = await req.headers['authorization']
         jwt.verify(Token, 'mohamedsecret', (err, decoded) => {

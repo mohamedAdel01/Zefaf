@@ -31,6 +31,7 @@ export default {
     }
   },
   async created() {
+    // this is not powered we should use TOKEN to check after
     let isUserLoggedIn = this.$store.state.MNG.isUserLoggedIn
     if(isUserLoggedIn === false) {
         return this.$router.push('/mng/login')
