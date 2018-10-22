@@ -66,7 +66,7 @@
               <th>
                 <button class="btn btn-info" @click="value.Q++" v-if="key != 'flint'">+</button>
                 <button class="btn btn-info" @click="value.Q--" v-if="key != 'flint'" :disabled="value.Q < 2">-</button>
-                <button class="btn btn-info" @click="DltItem(key, value, index)">X</button>
+                <button class="btn btn-info" @click="DltItem(key, index)">X</button>
               </th>
             </tr>
           </tbody>
@@ -138,7 +138,7 @@ export default {
       }
       // console.log(this.checkList[key])
     },
-    DltItem(key, value, index) {
+    DltItem(key, index) {
       this.checkList[key].splice(index, 1)
       console.log(this.checkList)
     }

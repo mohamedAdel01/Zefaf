@@ -23,13 +23,14 @@ const NuserControlles = require('../../controlles/Nuser-Controlles')
 // MNG ROUTING {GET} REQ
   router.get('/MNG/getservicesitems',  MNGDataControlles.getServicesItems)
 
-// CLIENTS ROUTING {POST} REQ
+// CLIENTS ROUTING
   // AUTH
   router.post('/clients/adduser', authPolices.register, ClientsAuthControlles.ClientsAddUser) // we will add authPolices after
   router.post('/clients/login', ClientsAuthControlles.ClientsLogin)
 
-  // GET DATA
+  // DATA
   router.post('/clients/getdata', ClientsDataControlles.getData)
+  router.post('/clients/updatedata', ClientsDataControlles.updateData)
 
 // AUTHENTICATION ROUTING
   router.post('/register', authPolices.register, authcontrolles.register)

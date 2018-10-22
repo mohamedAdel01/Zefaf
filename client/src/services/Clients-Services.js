@@ -7,5 +7,9 @@ export default {
 
   getData(req) {
     return Api().post('/clients/getdata', req)
+  },
+
+  updateData(req) {
+    return Api().post('/clients/updatedata', req)
   }
 }

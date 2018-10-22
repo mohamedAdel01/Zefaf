@@ -20,7 +20,7 @@ export const store = new Vuex.Store({
         isUserLoggedIn: false
       },
       services: {
-        Weddinghalls: null
+        Weddinghalls: null // here we will saving weddinghalls from client to be cachdata
       }
     },
     Nuser: {
